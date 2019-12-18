@@ -13,20 +13,45 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#d62467"
-        android:gravity="center">
-        <ImageButton
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
             android:id="@+id/pic"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="#ffffff"
             android:layout_margin="5dp"
+            android:src="@drawable/p1"
             />
-        <SearchView
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="70dp">
+<!--        <android.support.v7.widget.RecyclerView-->
+<!--            android:id="@+id/forecast_List"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        </SearchView>
+
+        <SearchView
+            android:id="@+id/searchbar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"/>
+<!--        <android.support.v7.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="70dp"-->
+<!--            >-->
+<!--        </android.support.v7.widget.Toolbar>-->
+<!--        <com.miguelcatalan.materialsearchview.MaterialSearchView-->
+<!--            android:id="@+id/search_view"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_width="match_parent">-->
+<!--        </com.miguelcatalan.materialsearchview.MaterialSearchView>-->
+
+
+
 
     </LinearLayout>
 
@@ -92,26 +117,226 @@
             />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/put_data"
-        android:layout_below="@id/page"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btn_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="try">
-
-        </Button>
-        <TextView
-            android:id="@+id/Text"
+    <RelativeLayout
+            android:id="@+id/put_data"
+            android:layout_below="@id/page"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <ImageView
+                        android:id="@+id/v1"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:src="@drawable/a">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v2"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v1"
+                        android:src="@drawable/b">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v3"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v2"
+                        android:src="@drawable/c">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v4"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v3"
+                        android:src="@drawable/d">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v5"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/v1"
+                        android:src="@drawable/e">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v6"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v5"
+                        android:layout_below="@id/v1"
+                        android:src="@drawable/f">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v7"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v6"
+                        android:layout_below="@id/v1"
+                        android:src="@drawable/h">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v8"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v7"
+                        android:layout_below="@id/v1"
+                        android:src="@drawable/i">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v9"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/v7"
+                        android:src="@drawable/j">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v10"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v9"
+                        android:layout_below="@id/v7"
+                        android:src="@drawable/k">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v11"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v10"
+                        android:layout_below="@id/v7"
+                        android:src="@drawable/l">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v12"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v11"
+                        android:layout_below="@id/v7"
+                        android:src="@drawable/m">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v13"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/v12"
+                        android:src="@drawable/n">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v14"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v1"
+                        android:layout_below="@id/v12"
+                        android:src="@drawable/o">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v15"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v2"
+                        android:layout_below="@id/v12"
+                        android:src="@drawable/p">
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/v16"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        android:layout_toRightOf="@id/v3"
+                        android:layout_below="@id/v12"
+                        android:src="@drawable/q">
+                    </ImageView>
 
-    </LinearLayout>
+
+
+
+                </RelativeLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="#ffffff"
+                android:visibility="invisible"
+                >
+            </View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:addStatesFromChildren="false"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:visibility="invisible"
+                >
+
+                <ImageView
+                    android:id="@+id/moviepic"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:id="@+id/filename"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Film Name:"
+                    android:layout_toRightOf="@id/moviepic"
+                    android:textColor="#000000">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/Mtitle"
+                    android:layout_below="@id/filename"
+                    android:layout_toRightOf="@+id/moviepic"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textColor="#000000"
+                    android:textSize="19dp"
+                    />
+
+                <TextView
+                    android:id="@+id/rel"
+                    android:layout_toRightOf="@id/moviepic"
+                    android:layout_below="@id/Mtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Release Time:"
+                    android:textColor="#000000"/>
+                <TextView
+                    android:id="@+id/release_data"
+                    android:layout_below="@id/rel"
+                    android:layout_toRightOf="@id/moviepic"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textColor="#000000"
+                    android:textSize="20dp">
+
+                </TextView>
+
+            </RelativeLayout>
+
+
+
+
+
+        </RelativeLayout>
+
+
 
 </RelativeLayout>

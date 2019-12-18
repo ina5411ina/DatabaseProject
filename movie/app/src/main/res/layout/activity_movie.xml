@@ -16,12 +16,14 @@
         android:background="#d62467"
         android:gravity="center"
         android:orientation="horizontal">
-        <View
+        <ImageView
             android:id="@+id/pic"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="#ffffff"
             android:layout_margin="5dp"
+            android:src="@drawable/p1"
+            android:onClick="True"
             />
 
         <SearchView
@@ -100,16 +102,16 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/page"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-1dp">
 
         <RelativeLayout
             android:id="@+id/put_data"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="#D4D4D4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
             android:gravity="center">
 
             <Button
@@ -118,7 +120,7 @@
                 android:layout_height="100dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/oval"
-                android:text="1"
+                android:text="恐怖"
                 android:textSize="30dp" />
 
             <Button
@@ -128,7 +130,7 @@
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/att_1"
                 android:background="@drawable/oval"
-                android:text="2"
+                android:text="愛情"
                 android:textSize="30dp" />
 
             <Button
@@ -138,7 +140,7 @@
                 android:layout_below="@id/att_1"
                 android:layout_margin="20dp"
                 android:background="@drawable/oval"
-                android:text="3"
+                android:text="驚悚"
                 android:textSize="30dp" />
 
             <Button
@@ -149,7 +151,7 @@
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/att_3"
                 android:background="@drawable/oval"
-                android:text="4"
+                android:text="喜劇"
                 android:textSize="30dp" />
 
             <Button
@@ -159,7 +161,7 @@
                 android:layout_below="@id/att_3"
                 android:layout_margin="20dp"
                 android:background="@drawable/oval"
-                android:text="5"
+                android:text="懸疑"
                 android:textSize="30dp" />
 
             <Button
@@ -170,7 +172,7 @@
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/att_5"
                 android:background="@drawable/oval"
-                android:text="6"
+                android:text="校園"
                 android:textSize="30dp" />
 
             <Button
@@ -180,7 +182,7 @@
                 android:layout_below="@id/att_5"
                 android:layout_margin="20dp"
                 android:background="@drawable/oval"
-                android:text="7"
+                android:text="推理"
                 android:textSize="30dp" />
 
             <Button
@@ -191,7 +193,7 @@
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/att_7"
                 android:background="@drawable/oval"
-                android:text="8"
+                android:text="劇情"
                 android:textSize="30dp" />
 
         </RelativeLayout>

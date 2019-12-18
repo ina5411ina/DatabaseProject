@@ -5,15 +5,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.Adapter.GroupRecycleAdapter
+import com.example.Service_test.DataService
+import kotlinx.android.synthetic.main.test.*
 
 class user : AppCompatActivity() {
 
     val tag_1:String = "Hi~~~"
+    lateinit var adapter:GroupRecycleAdapter
+
+    fun generateListView() {
+        adapter = GroupRecycleAdapter(this, DataService.groups)
+        gg.adapter = adapter
+        gg.layoutManager = LinearLayoutManager(this)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.avtivity_user)
+        setContentView(R.layout.test)
+        generateListView()
     }
 
     override fun onStart() {

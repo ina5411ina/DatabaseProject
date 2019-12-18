@@ -60,6 +60,7 @@ class movie : AppCompatActivity() {
             }
             R.id.btn_tv -> {
                 Toast.makeText(this, "TV not yet", Toast.LENGTH_SHORT).show()
+                intent.setClass(this, tv::class.java)
             }
             R.id.btn_keep -> {
                 Toast.makeText(this, "keep not yet", Toast.LENGTH_SHORT).show()
