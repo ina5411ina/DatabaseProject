@@ -16,7 +16,7 @@ class ItemRecycleAdapt(val context: Context, val groups: List<Food>) :RecyclerVi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemRecycleAdapt.Holder {
         val view = LayoutInflater
             .from(context)
-            .inflate(R.layout.activity_main, parent, false)
+            .inflate(R.layout.test, parent, false)
 
         return Holder(view)
     }
