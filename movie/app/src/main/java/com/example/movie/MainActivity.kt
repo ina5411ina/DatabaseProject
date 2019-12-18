@@ -58,10 +58,10 @@ class MainActivity : AppCompatActivity() {
         pic.setOnClickListener {
             var str = search.query
             val body = FormBody.Builder()
-                .add("name", str.toString()+ "%")
+                .add("name", str.toString() + "%")
                 .build()
 
-//            oo.setText(str.toString())
+//            print1.setText(str.toString())
 
             val client = OkHttpClient()
             val request = okhttp3.Request.Builder()
@@ -85,18 +85,19 @@ class MainActivity : AppCompatActivity() {
                             if(!json.isNull(i)){
                                 val jj = json.getJSONObject(i)
                                 val title = jj.getString("primaryTitle".toString())
-                                val release:String = jj.getString("5".toString())
+                                val release:String = jj.getString("startYear".toString())
 //                                mutableSet.add( Data(title, release, "p1") )
 //                                val tt: String = oo.text.toString()
-//                                oo.setText(tt.toString() + "\n" + owner)
+                                val t:String = print1.text.toString()
+                                    print1.setText(t+ "\n" + title.toString() + "\n" + release.toString())
                             }
                             else{
                                 continue
                             }
                         }
                     } catch (e: JSONException) {
-//                        val tt: String = oo.text.toString()
-//                        oo.setText("no\n" + e.message)
+                        val tt: String = print1.text.toString()
+                        print1.setText("no\n" + e.message)
                     }
 
                     flag = 1

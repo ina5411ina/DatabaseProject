@@ -131,8 +131,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     >
+                    <TextView
+                        android:id="@+id/print1"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        >
+
+                    </TextView>
                     <ImageView
                         android:id="@+id/v1"
+                        android:layout_below="@id/print1"
                         android:layout_width="100dp"
                         android:layout_height="200dp"
                         android:src="@drawable/a">
@@ -142,10 +150,12 @@
                         android:layout_width="100dp"
                         android:layout_height="200dp"
                         android:layout_toRightOf="@id/v1"
+                        android:layout_below="@id/print1"
                         android:src="@drawable/b">
                     </ImageView>
                     <ImageView
                         android:id="@+id/v3"
+                        android:layout_below="@id/print1"
                         android:layout_width="100dp"
                         android:layout_height="200dp"
                         android:layout_toRightOf="@id/v2"
@@ -156,6 +166,7 @@
                         android:layout_width="100dp"
                         android:layout_height="200dp"
                         android:layout_toRightOf="@id/v3"
+                        android:layout_below="@id/print1"
                         android:src="@drawable/d">
                     </ImageView>
                     <ImageView
