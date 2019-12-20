@@ -10,6 +10,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.android.synthetic.main.activity_serach_page.*
+import kotlinx.android.synthetic.main.inner_movie.*
 import kotlinx.android.synthetic.main.recycleview.*
 import okhttp3.*
 import org.json.JSONArray
@@ -26,10 +28,11 @@ class test : AppCompatActivity() {
 //        val toolbar: Toolbar = findViewById(com.example.tvchildren.R.id.toolbar)
         setSupportActionBar(findViewById(com.example.tvchildren.R.id.toolbar))
 
-        search_btn.setOnClickListener{
+        btnfind_movie.setOnClickListener{
             Log.d("aaa","btn ok")
             var list = mutableListOf<Adapter.Model>()
             var str =search.query.toString() + "%"
+
             val body = FormBody.Builder().add("name", str).build()
             testTT.setText(str)
 
@@ -106,31 +109,6 @@ class test : AppCompatActivity() {
                 return true
             }
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-    fun startNextActivity(v: View) {
-        var intent = Intent()
-
-        when (v.id) {
-            com.example.tvchildren.R.id.btn_main -> {
-                Toast.makeText(this, "Main", Toast.LENGTH_SHORT).show()
-                intent.setClass(this, MainActivity::class.java)
-                startActivity(intent)
-
-            }
-            com.example.tvchildren.R.id.btn -> {
-                Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
-                intent.setClass(this, search::class.java)
-                startActivity(intent)
-            }
-            com.example.tvchildren.R.id.btn_recommend -> {
-                Toast.makeText(this, "Recommend not yet", Toast.LENGTH_SHORT).show()
-                intent.setClass(this, test_rv::class.java)
-                startActivity(intent)
-            }
-            com.example.tvchildren.R.id.btn_like ->{
-                Toast.makeText(this, "like not yet", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 

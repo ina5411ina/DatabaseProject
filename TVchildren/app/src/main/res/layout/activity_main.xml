@@ -5,21 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fragment_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="9"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_main"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Button"
-                android:onClick="startNextActivity"/>
-
-            <Button
-                android:id="@+id/btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -33,6 +32,7 @@
 <!--                android:layout_weight="1"-->
 <!--                android:text="Button"-->
 <!--                android:onClick="startNextActivity"/>-->
+
 
 
             <Button
@@ -51,10 +51,14 @@
                 android:text="Button"
                 android:onClick="startNextActivity"/>
 
-
         </LinearLayout>
 
-<!--    <include layout="@layout/recycleview"/>-->
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:onClick="startNextActivity"/>
 
 
 </LinearLayout>
