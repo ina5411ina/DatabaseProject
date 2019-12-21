@@ -24,16 +24,156 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
     </LinearLayout>
-    <TextView
-        android:id="@+id/text123"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+        android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/searchlistview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+        <ListView
+            android:id="@+id/searchlistview_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-1dp">
+
+            <RelativeLayout
+                android:id="@+id/put_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#f0f8ff"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/att_1"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/action"
+                    />
+
+                <Button
+                    android:id="@+id/att_2"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="20dp"
+                    android:layout_toRightOf="@id/att_1"
+                    android:background="@drawable/adventure"
+                    />
+
+                <Button
+                    android:id="@+id/att_3"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_1"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/animation"
+                    />
+
+                <Button
+                    android:id="@+id/att_4"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_2"
+                    android:layout_margin="20dp"
+                    android:layout_toRightOf="@id/att_3"
+                    android:background="@drawable/comedy"
+                    />
+
+                <Button
+                    android:id="@+id/att_5"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_3"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/crime"
+                    />
+
+                <Button
+                    android:id="@+id/att_6"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_4"
+                    android:layout_margin="20dp"
+                    android:layout_toRightOf="@id/att_5"
+                    android:background="@drawable/documentary"
+                    />
+
+                <Button
+                    android:id="@+id/att_7"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_5"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/drama"
+                    />
+
+                <Button
+                    android:id="@+id/att_8"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_6"
+                    android:layout_margin="20dp"
+                    android:layout_toRightOf="@id/att_7"
+                    android:background="@drawable/fantasy"
+                    />
+
+                <Button
+                    android:id="@+id/att_9"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_7"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/horror">
+                </Button>
+
+                <Button
+                    android:id="@+id/att_10"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_8"
+                    android:layout_margin="20dp"
+                    android:layout_toRightOf="@id/att_9"
+                    android:background="@drawable/mystery"
+                    />
+
+                <Button
+                    android:id="@+id/att_11"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_9"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/romance">
+                </Button>
+
+                <Button
+                    android:id="@+id/att_12"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_10"
+                    android:layout_margin="20dp"
+                    android:layout_toRightOf="@id/att_11"
+                    android:background="@drawable/scifi"
+                    />
+
+                <Button
+                    android:id="@+id/att_13"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/att_11"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/thriller">
+                </Button>
+
+            </RelativeLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+
 
 
 </LinearLayout>

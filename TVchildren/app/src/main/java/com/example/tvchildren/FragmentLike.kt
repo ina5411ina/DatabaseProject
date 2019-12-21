@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,14 +28,21 @@ class FragmentLike : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(T, "onCreateView")
-        val inflater = inflater!!.inflate(R.layout.fragment_like, container, false)
-        val userlike = inflater.findViewById<TextView>(R.id.UserLike)
+        val inflate = inflater!!.inflate(R.layout.fragment_like, container, false)
 
-        return inflater
-    }
-    fun addLike(v:View){
+        val userlike = inflate.findViewById<TextView>(R.id.UserLike)
+        val layout = inflate.findViewById<View>(R.id.fragmentpage_like)
 
+        return inflate
     }
+
+//    override fun addLike(v:View){
+//        when(v?.id){
+//            R.id.UserLike -> {
+//
+//            }
+//        }
+//    }
 
     override fun onStart() {
         Log.d(T, "onStart")
