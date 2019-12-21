@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_serach_page.*
 import kotlinx.android.synthetic.main.inner_movie.*
@@ -28,7 +29,7 @@ class test : AppCompatActivity() {
 //        val toolbar: Toolbar = findViewById(com.example.tvchildren.R.id.toolbar)
         setSupportActionBar(findViewById(com.example.tvchildren.R.id.toolbar))
 
-        btnfind_movie.setOnClickListener{
+        btn_main.setOnClickListener{
             Log.d("aaa","btn ok")
             var list = mutableListOf<Adapter.Model>()
             var str =search.query.toString() + "%"

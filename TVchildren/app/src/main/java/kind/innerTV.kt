@@ -27,6 +27,10 @@ class innerTV:Fragment(){
         return inflater!!.inflate(R.layout.inner_tv, container, false)
     }
 
+    fun getState(): Int{
+        return 3
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         Log.d(T, "onActivityCreated")
         super.onActivityCreated(savedInstanceState)

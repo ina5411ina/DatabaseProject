@@ -10,11 +10,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/fragment_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="50sp"
-            android:text="Main" />
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/fragment_main"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:textSize="50sp"-->
+<!--            android:text="Main" />-->
     </LinearLayout>
 </FrameLayout>

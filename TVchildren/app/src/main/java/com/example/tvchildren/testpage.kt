@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.ArrayAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.inner_movie.*
 
 class testpage : AppCompatActivity() {
 
@@ -57,6 +60,8 @@ class testpage : AppCompatActivity() {
 
         // link tabLayout with viewPager
         tabLayout.setupWithViewPager(viewPager)
+
+
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.tvchildren
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 import android.widget.Button
 
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         search_btn.setOnClickListener(){
 //            ShowFragmentSearch()
             startActivity(Intent(this, testpage::class.java))
+            Log.d("aaa","btn ok")
         }
         recommend_btn.setOnClickListener(){
             ShowFragmentRecommend()

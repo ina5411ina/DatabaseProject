@@ -27,6 +27,10 @@ class innerShort:Fragment(){
         return inflater!!.inflate(R.layout.inner_short, container, false)
     }
 
+    fun getState(): Int{
+        return 2
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         Log.d(T, "onActivityCreated")
         super.onActivityCreated(savedInstanceState)
