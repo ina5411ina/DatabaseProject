@@ -106,8 +106,9 @@
                 android:id="@+id/checkBox1"
                 android:layout_width="wrap_content"
                 android:layout_height="59dp"
+                android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img1"
-                android:text="LIKE" />
+                android:text="LIKE Action " />
 
             <CheckBox
                 android:id="@+id/checkBox2"
@@ -116,7 +117,7 @@
                 android:layout_below="@id/checkBox1"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img2"
-                android:text="LIKE" />
+                android:text="LIKE Adventure" />
 
             <CheckBox
                 android:id="@+id/checkBox3"
@@ -125,7 +126,7 @@
                 android:layout_below="@id/checkBox2"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img3"
-                android:text="LIKE" />
+                android:text="LIKE Animation" />
 
             <CheckBox
                 android:id="@+id/checkBox4"
@@ -134,7 +135,7 @@
                 android:layout_below="@id/checkBox3"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img4"
-                android:text="LIKE" />
+                android:text="LIKE Comedy" />
 
             <CheckBox
                 android:id="@+id/checkBox5"
@@ -143,7 +144,7 @@
                 android:layout_below="@id/checkBox4"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img5"
-                android:text="LIKE" />
+                android:text="LIKE Crime" />
             <CheckBox
                 android:id="@+id/checkBox6"
                 android:layout_width="wrap_content"
@@ -151,7 +152,7 @@
                 android:layout_below="@id/checkBox5"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img6"
-                android:text="LIKE" />
+                android:text="LIKE Documentary" />
 
             <CheckBox
                 android:id="@+id/checkBox7"
@@ -160,7 +161,7 @@
                 android:layout_below="@id/checkBox6"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img7"
-                android:text="LIKE" />
+                android:text="LIKE Drama" />
 
             <CheckBox
                 android:id="@+id/checkBox8"
@@ -169,7 +170,7 @@
                 android:layout_below="@id/checkBox7"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img8"
-                android:text="LIKE" />
+                android:text="LIKE Fantasy" />
 
             <CheckBox
                 android:id="@+id/checkBox9"
@@ -178,7 +179,7 @@
                 android:layout_below="@id/checkBox8"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img9"
-                android:text="LIKE" />
+                android:text="LIKE Horror" />
 
             <CheckBox
                 android:id="@+id/checkBox10"
@@ -187,7 +188,7 @@
                 android:layout_below="@id/checkBox9"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img10"
-                android:text="LIKE" />
+                android:text="LIKE Mystery" />
 
             <CheckBox
                 android:id="@+id/checkBox11"
@@ -196,7 +197,7 @@
                 android:layout_below="@id/checkBox10"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img11"
-                android:text="LIKE" />
+                android:text="LIKE Romance" />
 
             <CheckBox
                 android:id="@+id/checkBox12"
@@ -205,7 +206,7 @@
                 android:layout_below="@id/checkBox11"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img12"
-                android:text="LIKE" />
+                android:text="LIKE Scifi" />
 
             <CheckBox
                 android:id="@+id/checkBox13"
@@ -214,14 +215,15 @@
                 android:layout_below="@id/checkBox12"
                 android:layout_margin="20dp"
                 android:layout_toRightOf="@id/img13"
-                android:text="LIKE" />
+                android:text="LIKE Thriller" />
 
             <Button
+                android:id="@+id/finish_set"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:text="蝣箄��" />
+                android:text="@string/finish" />
 
         </RelativeLayout>
     </ScrollView>

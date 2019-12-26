@@ -3,11 +3,20 @@ package com.example.tvchildren
 import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import android.widget.Adapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.request.transition.Transition
+import com.bumptech.glide.request.transition.Transition.ViewAdapter
+import kotlinx.android.synthetic.main.fragment_main.view.*
+import kotlinx.android.synthetic.main.recycleview.*
 
 
 class FragmentMain : Fragment() {
@@ -25,7 +34,26 @@ class FragmentMain : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(T, "onCreateView")
-        return inflater!!.inflate(R.layout.fragment_main, container, false)
+        val inflate =  inflater!!.inflate(R.layout.fragment_main, container, false)
+
+
+        var imglist:MutableList<Imgdata> = mutableListOf()
+        for(i in datapic.groups){
+//            imglist.clear()
+            imglist.add(i)
+        }
+//        inflate.main_recycleview.layoutManager = LinearLayoutManager(inflate.context)
+        inflate.main_recycleview.adapter = MainViewAdapter(inflate.context, imglist)
+
+        var img2:MutableList<Imgdata> = mutableListOf()
+        for(j in datapic.new){
+//            imglist.clear()
+            img2.add(j)
+        }
+//        inflate.main_recycleview.layoutManager = LinearLayoutManager(inflate.context)
+        inflate.new_view.adapter = MainViewAdapter(inflate.context, img2)
+
+        return inflate
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

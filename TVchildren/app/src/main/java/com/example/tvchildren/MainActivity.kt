@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
             ShowFragmentMain()
         }
         search_btn.setOnClickListener(){
-//            ShowFragmentSearch()
             startActivity(Intent(this, testpage::class.java))
             Log.d("aaa","btn ok")
         }
@@ -48,13 +47,7 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
 
     }
-//    fun ShowFragmentSearch(){
-//        val transaction = manager.beginTransaction()
-//        val fragment = FragmentSearch()
-//        transaction.replace(R.id.fragment_holder, fragment)
-//        transaction.addToBackStack(null)
-//        transaction.commit()
-//    }
+
     fun ShowFragmentRecommend(){
         val transaction = manager.beginTransaction()
         val fragment = FragmentRecommend()

@@ -8,13 +8,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.tvchildren.MainActivity
 import com.example.tvchildren.R
+import com.example.tvchildren.TypeListView
 import kotlinx.android.synthetic.main.inner_movie.*
 import kotlinx.android.synthetic.main.inner_movie.view.*
 import okhttp3.*
@@ -116,6 +114,17 @@ class innerMovie:Fragment(){
             View.INVISIBLE
         } else{
             View.INVISIBLE
+        }
+    }
+
+    fun cliclbtn(inflater: LayoutInflater, container: ViewGroup?){
+        val inflate = inflater!!.inflate(R.layout.inner_movie, container, false)
+
+        val btn_action = inflate.findViewById<Button>(R.id.att_1)
+        btn_action.setOnClickListener(){
+            val intent = Intent()
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
         }
     }
 

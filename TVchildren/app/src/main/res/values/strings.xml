@@ -1,3 +1,44 @@
 <resources>
-    <string name="app_name">TV children</string>
+    <string name="app_name">Search 影視</string>
+    <string name="message">MainButton</string>
+    <string name="title_activity_search">search</string>
+    <string name="ddd">texst</string>
+    <string name="mainpage">首頁</string>
+    <string name="searchpage">搜尋</string>
+    <string name="userpage">USER</string>
+    <string name="recommedpage">推薦</string>
+    <string name="finish">完成</string>
+    <string name="modify">修改</string>
+    <string name="username">暱稱</string>
+    <string name="birthday">出生年分</string>
+    <string name="prefer">偏好設定</string>
+    <string name="Go">Go</string>
+    <string name="back">返回</string>
+    <string name="insertprefer">增加</string>
+    <string name="type">影視類型</string>
+    <string name="imdb">資料來源來自IMDb.com</string>
+    <string name="myname">名稱</string>
+    <string name="d">導演</string>
+    <string name="w">編劇</string>
+    <string name="act">演員</string>
+    <string-array name="Genres">
+        <item>Action</item>
+        <item>Comedy</item>
+        <item>Family</item>
+        <item>History</item>
+        <item>Mystery</item>
+        <item>Adventure</item>
+        <item>Crime</item>
+        <item>Fantasy</item>
+        <item>Horror</item>
+        <item>Music</item>
+        <item>Thriller</item>
+        <item>Romance</item>
+        <item>Drama</item>
+    </string-array>
+    <string-array name="type">
+        <item>Movie</item>
+        <item>Short</item>
+        <item>tvEpisode</item>
+    </string-array>
 </resources>

@@ -39,8 +39,14 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
-    implementation 'com.android.support:appcompat-v7:25.0.1'
-    implementation 'com.android.support:design:25.0.1'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'com.github.demoNo:AutoScrollViewPager:v1.0.2'
+    implementation 'com.github.santalu:auto-viewpager:1.0.8'
+    implementation 'com.google.android.material:material:1.0.0'
 
-
+}
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
 }
