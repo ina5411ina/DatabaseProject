@@ -1,4 +1,4 @@
-package com.example.tvchildren
+package com.example.tvchildren.test
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.tvchildren.R
 
 class Adapter: RecyclerView.Adapter<Adapter.ViewHolder> {
     private var context:Context
@@ -25,7 +25,7 @@ class Adapter: RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Adapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val cell = LayoutInflater.from(context).inflate(R.layout.recyclemodel, parent, false)
         val viewHolder = ViewHolder(cell)
         cell.layoutParams.height = 150
@@ -40,7 +40,7 @@ class Adapter: RecyclerView.Adapter<Adapter.ViewHolder> {
         return data.size
     }
 
-    override fun onBindViewHolder(holder: Adapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = data[position]
         //Glide不確定
         Glide.with(context).load(model.pic).into(holder.movie_pic)

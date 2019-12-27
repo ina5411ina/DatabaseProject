@@ -4,26 +4,25 @@ import org.json.JSONObject
 import java.io.Serializable
 
 class MovieData : Serializable {
-    var pic:String = ""
-    var name:String = ""
+    var movieTitle:String = ""
     var year:String = ""
-    var actors:String=""
-    var data:String = ""
-    var url:String = ""
+    var ttconst:String = ""
 
     init{
-        pic = "N/A"
-        name = "N/A"
+        movieTitle = "N/A"
         year = "N/A"
-        actors = "N/A"
-        data = "N/A"
-        url = "N/A"
+        ttconst = "N/A"
+    }
+
+    fun parsMovieData(jsonObject: JSONObject){
+        movieTitle = jsonObject.getString("primaryTitle")
+        year = jsonObject.getString("startYear")
+        ttconst = jsonObject.getString("movie.tconst")
+
     }
 }
 
-fun parsIMovieData(jsonObject: JSONObject){
 
-}
 
 data class Imgdata(var pic:String , var name:String, var data:String): Serializable
 data class ImgeUrl(var pic:String): Serializable

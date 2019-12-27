@@ -2,6 +2,7 @@ package kind
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Layout
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.tvchildren.MainActivity
 import com.example.tvchildren.R
@@ -89,6 +91,30 @@ class innerMovie:Fragment(){
                                         listadapter.addAll(json.getString("primaryTitle")+ "\t" +json.getString("startYear"))
                                     }
                                 }
+
+                                list.setOnItemClickListener{parent, view, position, id ->
+                                    var title = jsonarray.getJSONObject(position).get("primaryTitle").toString()
+                                    var t = jsonarray.getJSONObject(position).get("tconst").toString()
+
+                                    // 跳出視窗
+                                    var build =  AlertDialog.Builder(layout.context)
+                                    build.setTitle(title)
+                                    build.setMessage("Go to IMDb")
+                                    build.setPositiveButton("Go"){dialog, which ->
+                                        //https://www.imdb.com/title/tt1475582/?ref_=nv_sr_srsg_0
+                                        val a:String = "https://www.imdb.com/title/"
+                                        val c:String = "/?ref_=nv_sr_srsg_0"
+                                        var add = a + t + c
+                                        val uri: Uri = Uri.parse(add)
+                                        var intent = Intent(Intent.ACTION_VIEW, uri)
+                                        startActivity(intent)
+                                    }
+                                    val Dialog = build.create()
+                                    Dialog.show()
+                                    // 跳出視窗程式結束
+
+                                    Log.d("tconst", t)
+                                }
                             }catch (e:JSONException){
                                 Log.d("Jsonerror ",e.message)
                             }
@@ -101,11 +127,109 @@ class innerMovie:Fragment(){
             }
 
         }
+
+        //return back
         layout.go_to_main.setOnClickListener(){
             var Main = Intent(layout.context, MainActivity::class.java)
             startActivity(Main)
         }
 
+        // click every type
+        val btn_action = inflate.findViewById<Button>(R.id.att_1)
+        btn_action.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "Action")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_animation = inflate.findViewById<Button>(R.id.att_3)
+        btn_animation.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "animation")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_comedy = inflate.findViewById<Button>(R.id.att_4)
+        btn_comedy.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "comedy")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_crime = inflate.findViewById<Button>(R.id.att_5)
+        btn_crime.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "crime")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_documentary = inflate.findViewById<Button>(R.id.att_6)
+        btn_documentary.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "documentary")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_drama = inflate.findViewById<Button>(R.id.att_7)
+        btn_drama.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "drama")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_fantasy = inflate.findViewById<Button>(R.id.att_8)
+        btn_fantasy.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "fantasy")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_horror = inflate.findViewById<Button>(R.id.att_9)
+        btn_horror.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "horror")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_mystery = inflate.findViewById<Button>(R.id.att_10)
+        btn_mystery.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "mystery")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_romance = inflate.findViewById<Button>(R.id.att_11)
+        btn_romance.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "romance")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_scifi = inflate.findViewById<Button>(R.id.att_12)
+        btn_scifi.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "scifi")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_thriller = inflate.findViewById<Button>(R.id.att_13)
+        btn_thriller.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "thriller")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
         return inflate
     }
 
@@ -117,16 +241,6 @@ class innerMovie:Fragment(){
         }
     }
 
-    fun cliclbtn(inflater: LayoutInflater, container: ViewGroup?){
-        val inflate = inflater!!.inflate(R.layout.inner_movie, container, false)
-
-        val btn_action = inflate.findViewById<Button>(R.id.att_1)
-        btn_action.setOnClickListener(){
-            val intent = Intent()
-            intent.setClass(inflate.context, TypeListView::class.java)
-            startActivity(intent)
-        }
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         Log.d(T, "onActivityCreated")

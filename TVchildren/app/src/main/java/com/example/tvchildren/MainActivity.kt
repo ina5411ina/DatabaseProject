@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 
 import android.widget.Button
+import com.example.tvchildren.test.Adapter
 
 
 val list = mutableListOf<Adapter.Model>()

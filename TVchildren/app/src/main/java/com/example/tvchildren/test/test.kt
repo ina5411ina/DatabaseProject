@@ -1,16 +1,15 @@
-package com.example.tvchildren
+package com.example.tvchildren.test
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tvchildren.R
+import com.example.tvchildren.list
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_serach_page.*
 import kotlinx.android.synthetic.main.inner_movie.*
 import kotlinx.android.synthetic.main.recycleview.*
@@ -27,7 +26,7 @@ class test : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 //        val toolbar: Toolbar = findViewById(com.example.tvchildren.R.id.toolbar)
-        setSupportActionBar(findViewById(com.example.tvchildren.R.id.toolbar))
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         btn_main.setOnClickListener{
             Log.d("aaa","btn ok")
@@ -92,20 +91,20 @@ class test : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(com.example.tvchildren.R.menu.menu, menu)
+        menuInflater.inflate(R.menu.menu, menu)
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            com.example.tvchildren.R.id.movie -> {
+            R.id.movie -> {
                 Toast.makeText(applicationContext, "click on movie", Toast.LENGTH_LONG).show()
                 true
             }
-            com.example.tvchildren.R.id.sho ->{
+            R.id.sho ->{
                 Toast.makeText(applicationContext, "click on short", Toast.LENGTH_LONG).show()
                 return true
             }
-            com.example.tvchildren.R.id.tv ->{
+            R.id.tv ->{
                 Toast.makeText(applicationContext, "click on tv", Toast.LENGTH_LONG).show()
                 return true
             }
