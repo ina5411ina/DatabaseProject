@@ -13,7 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import com.example.tvchildren.Class_GlobleVarable.Companion.userfavorite
+import com.example.tvchildren.Class_GlobleVarable.Companion.favoritelist
+import kotlinx.android.synthetic.main.fragment_like.*
 import java.util.jar.Attributes
 
 
@@ -35,17 +36,11 @@ class FragmentLike() : Fragment() {
         val inflate = inflater.inflate(R.layout.fragment_like, container, false)
 
         val userlike = inflate.findViewById<TextView>(R.id.UserLike)
-        val setfavorite = inflate.findViewById<Button>(R.id.favorateedit)
+        val setfavorite = inflate.findViewById<Button>(R.id.Favorite)
         val layout = inflate.findViewById<View>(R.id.fragmentpage_like)
-        val favoriteInput = inflate.findViewById<TextView>(R.id.FavInput)
-        val likeinput = inflate.findViewById<TextView>(R.id.LikeInput)
+        val testLogin = inflate.findViewById<Button>(R.id.testLogin)
+//        val likeinput = inflate.findViewById<TextView>(R.id.LikeInput)
 
-        // put data
-        var i:Int
-        for(i in  userfavorite){
-            var tt:String = likeinput.text.toString()
-            likeinput.setText(tt + "\n" + i)
-        }
 
         //into checkView
         userlike.setOnClickListener(){
@@ -54,6 +49,11 @@ class FragmentLike() : Fragment() {
         }
         setfavorite.setOnClickListener(){
             var intent = Intent(layout.context, EditUserpage::class.java)
+            startActivity(intent)
+        }
+
+        testLogin.setOnClickListener(){
+            var intent = Intent(layout.context, RegisterActivity::class.java)
             startActivity(intent)
         }
         return inflate
