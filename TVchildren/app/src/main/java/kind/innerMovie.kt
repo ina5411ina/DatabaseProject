@@ -12,9 +12,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.tvchildren.MainActivity
-import com.example.tvchildren.R
-import com.example.tvchildren.TypeListView
+import com.example.tvchildren.*
+import com.example.tvchildren.Class_GlobleVarable.Companion.Luid
 import kotlinx.android.synthetic.main.inner_movie.*
 import kotlinx.android.synthetic.main.inner_movie.view.*
 import okhttp3.*
@@ -64,7 +63,7 @@ class innerMovie:Fragment(){
                 val client = OkHttpClient()
                 val body = FormBody.Builder()
                     .add("name",str)
-                    .add("genres", "%Horror%")
+                    .add("genres", "%")
                     .build()
                 val request = Request.Builder()
                     .url("http://140.136.149.225:80/search_movie.php")
@@ -80,22 +79,20 @@ class innerMovie:Fragment(){
                             Log.d("onResponse", "in here")
 
                             var responseData = response.body()!!.string()
-//                            var jsonarray = JSONArray(responseData)
-//                            Log.i("seeRespond",response.body()!!.string())
 
                             try {
                                 var jsonarray = JSONArray(responseData)
-                                for(i in 0..19){
+                                listadapter.clear()
+                                for(i in 0..10){
                                     if(!jsonarray.isNull(i)){
                                         val json = jsonarray.getJSONObject(i)
-                                        listadapter.addAll(json.getString("primaryTitle")+ "\t" +json.getString("startYear"))
+                                        listadapter.addAll(json.getString("primaryTitle")+ "\n" + json.getString("originalTitle") + "\t" +json.getString("startYear"))
                                     }
                                 }
 
                                 list.setOnItemClickListener{parent, view, position, id ->
                                     var title = jsonarray.getJSONObject(position).get("primaryTitle").toString()
                                     var t = jsonarray.getJSONObject(position).get("tconst").toString()
-
                                     // 跳出視窗
                                     var build =  AlertDialog.Builder(layout.context)
                                     build.setTitle(title)
@@ -105,16 +102,83 @@ class innerMovie:Fragment(){
                                         val a:String = "https://www.imdb.com/title/"
                                         val c:String = "/?ref_=nv_sr_srsg_0"
                                         var add = a + t + c
-                                        val uri: Uri = Uri.parse(add)
-                                        var intent = Intent(Intent.ACTION_VIEW, uri)
+                                        Class_GlobleVarable.IMDbUrl = add
+                                        var intent = Intent(layout.context, SetWebView::class.java)
                                         startActivity(intent)
                                     }
                                     val Dialog = build.create()
                                     Dialog.show()
                                     // 跳出視窗程式結束
-
                                     Log.d("tconst", t)
                                 }
+
+                                // 長按加入favorite
+                                list.setOnItemLongClickListener { parent, view, position, id ->
+                                    var tconst = jsonarray.getJSONObject(position).get("tconst").toString()
+                                    var primary = jsonarray.getJSONObject(position).get("primaryTitle").toString()
+                                    var original = jsonarray.getJSONObject(position).get("originalTitle").toString()
+                                    var startYear = jsonarray.getJSONObject(position).get("startYear").toString()
+
+                                    val body = FormBody.Builder()
+                                        .add("id", Class_GlobleVarable.Luid.toString())
+                                        .add("tconst", tconst)
+                                        .add("primary", primary)
+                                        .add("original", original)
+                                        .add("startYear", startYear)
+                                        .build()
+
+                                    val body2 = FormBody.Builder()
+                                        .add("id", Class_GlobleVarable.Luid.toString())
+                                        .add("tconst", tconst)
+                                        .build()
+
+                                    if(Luid == 0){
+                                        Toast.makeText(layout.context, "Please Login First", Toast.LENGTH_SHORT).show()
+                                    }else{
+                                        if(!Class_GlobleVarable.Lovelist.contains(tconst)){
+                                            val client = OkHttpClient()
+
+                                            val request = Request.Builder()
+                                                .url("http://140.136.149.225:80/insertlove.php")
+                                                .post(body)
+                                                .build()
+
+                                            client.newCall(request).enqueue(object : Callback {
+                                                override fun onFailure(call: Call, e: IOException) {
+                                                    Log.d("onFailure", e.message)
+                                                }
+
+                                                override fun onResponse(call: Call, response: Response) {
+                                                    activity!!.runOnUiThread(){
+                                                    }
+                                                }
+                                            })
+                                            Class_GlobleVarable.Lovelist.add(tconst)
+                                            Toast.makeText(layout.context, "Insert in to Favorite", Toast.LENGTH_SHORT).show()
+                                        } else{
+                                            val client = OkHttpClient()
+
+                                            val request = Request.Builder()
+                                                .url("http://140.136.149.225:80/deletelove.php")
+                                                .post(body)
+                                                .build()
+                                            client.newCall(request).enqueue(object : Callback {
+                                                override fun onFailure(call: Call, e: IOException) {
+                                                    Log.d("onFailure", e.message)
+                                                }
+
+                                                override fun onResponse(call: Call, response: Response) {
+                                                    activity!!.runOnUiThread(){
+                                                    }
+                                                }
+                                            })
+                                            Class_GlobleVarable.Lovelist.remove(tconst)
+                                            Toast.makeText(layout.context, "You have deleted the Favorite", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                    true
+                                }
+
                             }catch (e:JSONException){
                                 Log.d("Jsonerror ",e.message)
                             }
@@ -138,6 +202,7 @@ class innerMovie:Fragment(){
         val btn_action = inflate.findViewById<Button>(R.id.att_1)
         btn_action.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "Action")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -146,6 +211,7 @@ class innerMovie:Fragment(){
         val btn_adventre = inflate.findViewById<Button>(R.id.att_2)
         btn_adventre.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "Adventure")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -154,6 +220,7 @@ class innerMovie:Fragment(){
         val btn_animation = inflate.findViewById<Button>(R.id.att_3)
         btn_animation.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "animation")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -162,6 +229,7 @@ class innerMovie:Fragment(){
         val btn_comedy = inflate.findViewById<Button>(R.id.att_4)
         btn_comedy.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "comedy")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -170,6 +238,7 @@ class innerMovie:Fragment(){
         val btn_crime = inflate.findViewById<Button>(R.id.att_5)
         btn_crime.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "crime")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -178,6 +247,7 @@ class innerMovie:Fragment(){
         val btn_documentary = inflate.findViewById<Button>(R.id.att_6)
         btn_documentary.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "documentary")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -186,6 +256,7 @@ class innerMovie:Fragment(){
         val btn_drama = inflate.findViewById<Button>(R.id.att_7)
         btn_drama.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "drama")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -194,6 +265,7 @@ class innerMovie:Fragment(){
         val btn_fantasy = inflate.findViewById<Button>(R.id.att_8)
         btn_fantasy.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "fantasy")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -202,6 +274,7 @@ class innerMovie:Fragment(){
         val btn_horror = inflate.findViewById<Button>(R.id.att_9)
         btn_horror.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "horror")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -210,6 +283,7 @@ class innerMovie:Fragment(){
         val btn_mystery = inflate.findViewById<Button>(R.id.att_10)
         btn_mystery.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "mystery")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -218,6 +292,7 @@ class innerMovie:Fragment(){
         val btn_romance = inflate.findViewById<Button>(R.id.att_11)
         btn_romance.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "romance")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -226,6 +301,7 @@ class innerMovie:Fragment(){
         val btn_scifi = inflate.findViewById<Button>(R.id.att_12)
         btn_scifi.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "scifi")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)
@@ -234,6 +310,7 @@ class innerMovie:Fragment(){
         val btn_thriller = inflate.findViewById<Button>(R.id.att_13)
         btn_thriller.setOnClickListener(){
             val intent = Intent()
+            intent.putExtra("kind", "Movie")
             intent.putExtra("Type", "thriller")
             intent.setClass(inflate.context, TypeListView::class.java)
             startActivity(intent)

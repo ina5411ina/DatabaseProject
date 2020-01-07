@@ -4,17 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TypeListView">
+    tools:context=".SetWebView">
 
-    <LinearLayout
+    <WebView
+        android:id="@+id/web"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ListView
-            android:id="@+id/Type_ListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:longClickable="true"/>
-    </LinearLayout>
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

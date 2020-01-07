@@ -15,21 +15,25 @@
         android:layout_height="40dp"
         android:id="@+id/etusername"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
         android:paddingLeft="5dp"
         android:background="#fff"
+        android:singleLine="true"
+        android:maxLines="1"
         android:hint="Enter Username" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:inputType="textPassword"
         android:id="@+id/etpassword"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
         android:paddingLeft="5dp"
         android:background="#fff"
+        android:singleLine="true"
+        android:maxLines="1"
         android:hint="Enter Password" />
 
     <EditText
@@ -37,11 +41,44 @@
         android:layout_height="40dp"
         android:inputType="date"
         android:id="@+id/etbitrh"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
         android:paddingLeft="5dp"
         android:background="#fff"
+        android:maxLength="4"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:hint="Enter Your BirthYear. EX.1999" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="date"
+        android:id="@+id/etbitrhmonth"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:paddingLeft="5dp"
+        android:background="#fff"
+        android:maxLength="2"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:hint="Enter Your BirthDay. EX. 1" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="date"
+        android:id="@+id/etbitrhday"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:paddingLeft="5dp"
+        android:background="#fff"
+        android:maxLength="2"
+        android:singleLine="true"
+        android:maxLines="1"
         android:hint="Enter Your BirthYear" />
 
     <Button
@@ -51,22 +88,22 @@
         android:text="Register"
         android:background="#eeeeee"
         android:textColor="#000"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:id="@+id/tvlogin"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:textColor="#000000"
         android:textSize="20sp"
         android:text="Already Registered? Login here"/>
-    <Button
-        android:id="@+id/testMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Test Go to Main"/>
+<!--    <Button-->
+<!--        android:id="@+id/testMain"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:text="Test Go to Main"/>-->
 </LinearLayout>

@@ -50,7 +50,7 @@
                 android:gravity="center">
 
                 <Button
-                    android:id="@+id/att_1"
+                    android:id="@+id/att_1b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="20dp"
@@ -58,114 +58,114 @@
                     />
 
                 <Button
-                    android:id="@+id/att_2"
+                    android:id="@+id/att_2b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="20dp"
-                    android:layout_toRightOf="@id/att_1"
+                    android:layout_toRightOf="@id/att_1b"
                     android:background="@drawable/short_adventure"
                     />
 
                 <Button
-                    android:id="@+id/att_3"
+                    android:id="@+id/att_3b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_1"
+                    android:layout_below="@id/att_1b"
                     android:layout_margin="20dp"
                     android:background="@drawable/short_animation"
                     />
 
                 <Button
-                    android:id="@+id/att_4"
+                    android:id="@+id/att_4b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_2"
+                    android:layout_below="@id/att_2b"
                     android:layout_margin="20dp"
-                    android:layout_toRightOf="@id/att_3"
+                    android:layout_toRightOf="@id/att_3b"
                     android:background="@drawable/short_comedy"
                     />
 
                 <Button
-                    android:id="@+id/att_5"
+                    android:id="@+id/att_5b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_3"
+                    android:layout_below="@id/att_3b"
                     android:layout_margin="20dp"
                     android:background="@drawable/short_crime"
                     />
 
                 <Button
-                    android:id="@+id/att_6"
+                    android:id="@+id/att_6b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_4"
+                    android:layout_below="@id/att_4b"
                     android:layout_margin="20dp"
-                    android:layout_toRightOf="@id/att_5"
+                    android:layout_toRightOf="@id/att_5b"
                     android:background="@drawable/short_documentary"
                     />
 
                 <Button
-                    android:id="@+id/att_7"
+                    android:id="@+id/att_7b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_5"
+                    android:layout_below="@id/att_5b"
                     android:layout_margin="20dp"
                     android:background="@drawable/short_drama"
                     />
 
                 <Button
-                    android:id="@+id/att_8"
+                    android:id="@+id/att_8b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_6"
+                    android:layout_below="@id/att_6b"
                     android:layout_margin="20dp"
-                    android:layout_toRightOf="@id/att_7"
+                    android:layout_toRightOf="@id/att_7b"
                     android:background="@drawable/short_fantasy"
                     />
 
                 <Button
-                    android:id="@+id/att_9"
+                    android:id="@+id/att_9b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_7"
+                    android:layout_below="@id/att_7b"
                     android:layout_margin="20dp"
                     android:background="@drawable/short_horror">
                 </Button>
 
                 <Button
-                    android:id="@+id/att_10"
+                    android:id="@+id/att_10b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_8"
+                    android:layout_below="@id/att_8b"
                     android:layout_margin="20dp"
-                    android:layout_toRightOf="@id/att_9"
+                    android:layout_toRightOf="@id/att_9b"
                     android:background="@drawable/short_mystery"
                     />
 
                 <Button
-                    android:id="@+id/att_11"
+                    android:id="@+id/att_11b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_9"
+                    android:layout_below="@id/att_9b"
                     android:layout_margin="20dp"
                     android:background="@drawable/short_romance">
                 </Button>
 
                 <Button
-                    android:id="@+id/att_12"
+                    android:id="@+id/att_12b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_10"
+                    android:layout_below="@id/att_10b"
                     android:layout_margin="20dp"
-                    android:layout_toRightOf="@id/att_11"
+                    android:layout_toRightOf="@id/att_11b"
                     android:background="@drawable/short_scifi"
                     />
 
                 <Button
-                    android:id="@+id/att_13"
+                    android:id="@+id/att_13b"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_below="@id/att_11"
+                    android:layout_below="@id/att_11b"
                     android:layout_margin="20dp"
                     android:background="@drawable/short_thriller">
                 </Button>

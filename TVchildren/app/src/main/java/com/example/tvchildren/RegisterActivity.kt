@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.register.*
 import okhttp3.*
 import org.json.JSONArray
@@ -33,6 +34,9 @@ class RegisterActivity : AppCompatActivity() {
 
         var etusername = findViewById<EditText>(R.id.etusername)
         var etpassword = findViewById<EditText>(R.id.etpassword)
+        var birthy = findViewById<EditText>(R.id.etbitrh)
+        var birthm =  findViewById<EditText>(R.id.etbitrhmonth)
+        var birthd = findViewById<EditText>(R.id.etbitrhday)
 
         preferenceHelper = PreferenceHelper(this)
 
@@ -57,9 +61,9 @@ class RegisterActivity : AppCompatActivity() {
                 val client = OkHttpClient()
                 val body = FormBody.Builder()
                     .add("name", etusername.text.toString())
-                    .add("birthyear", "1999")
-                    .add("birthmon", "3")
-                    .add("birthday", "9")
+                    .add("birthyear", birthy.text.toString())
+                    .add("birthmon", birthm.text.toString())
+                    .add("birthday", birthd.text.toString())
                     .add("password", etpassword.text.toString())
                     .build()
 
@@ -99,10 +103,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 //
-        testMain.setOnClickListener(){
-            var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+
 
 
     }

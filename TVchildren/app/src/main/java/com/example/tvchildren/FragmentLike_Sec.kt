@@ -36,7 +36,7 @@ class FragmentLike_Sec :  Fragment(){
         var username = inflate.findViewById<TextView>(R.id.username_input)
         var userbirth = inflate.findViewById<TextView>(R.id.username_input)
         var sethobby = inflate.findViewById<Button>(R.id.SetHobby)
-
+        var lovemovie = inflate.findViewById<Button>(R.id.lovemovie)
         username.setText(Class_GlobleVarable.userName)
 
         //into checkView
@@ -44,10 +44,12 @@ class FragmentLike_Sec :  Fragment(){
             var intent = Intent(layout.context, EditUserpage::class.java)
             startActivity(intent)
         }
-//        setfavorite.setOnClickListener(){
-//            var intent = Intent(layout.context, EditUserpage::class.java)
-//            startActivity(intent)
-//        }
+        lovemovie.setOnClickListener(){
+            var intent = Intent(layout.context, LoveMovie::class.java)
+            startActivity(intent)
+        }
+
+
 
         return inflate
     }

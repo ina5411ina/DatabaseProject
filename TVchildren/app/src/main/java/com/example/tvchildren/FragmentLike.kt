@@ -50,11 +50,11 @@ class FragmentLike() : Fragment() {
             var intent = Intent(layout.context, RegisterActivity::class.java)
             startActivity(intent)
         }
-
-        ttdata.setOnClickListener(){
-            var intent = Intent(layout.context, getTest::class.java)
-            startActivity(intent)
-        }
+//
+//        ttdata.setOnClickListener(){
+//            var intent = Intent(layout.context, getTest::class.java)
+//            startActivity(intent)
+//        }
 
         testCrawler.setOnClickListener(){
             var url = "https://www.imdb.com/title/tt4520988/?ref_=nv_sr_srsg_0"

@@ -1,5 +1,6 @@
 package kind
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,11 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.tvchildren.MainActivity
-import com.example.tvchildren.R
+import com.example.tvchildren.*
+import com.example.tvchildren.Class_GlobleVarable.Companion.Luid
 import kotlinx.android.synthetic.main.inner_movie.*
 import kotlinx.android.synthetic.main.inner_movie.view.*
 import kotlinx.android.synthetic.main.inner_movie.view.search
@@ -63,7 +65,7 @@ class innerTV:Fragment(){
                     .add("genres", "%Horror%")
                     .build()
                 val request = Request.Builder()
-                    .url("http://140.136.149.225:80/search_movie.php")
+                    .url("http://140.136.149.225:80/search_tv.php")
                     .post(body)
                     .build()
                 client.newCall(request).enqueue(object : Callback {
@@ -87,6 +89,98 @@ class innerTV:Fragment(){
                                         listadapter.addAll(json.getString("primaryTitle")+ "\t" +json.getString("startYear"))
                                     }
                                 }
+
+
+                                list.setOnItemClickListener{parent, view, position, id ->
+                                    var title = jsonarray.getJSONObject(position).get("primaryTitle").toString()
+                                    var t = jsonarray.getJSONObject(position).get("tconst").toString()
+                                    // 跳出視窗
+                                    var build =  AlertDialog.Builder(layout.context)
+                                    build.setTitle(title)
+                                    build.setMessage("Go to IMDb")
+                                    build.setPositiveButton("Go"){dialog, which ->
+                                        //https://www.imdb.com/title/tt1475582/?ref_=nv_sr_srsg_0
+                                        val a:String = "https://www.imdb.com/title/"
+                                        val c:String = "/?ref_=nv_sr_srsg_0"
+                                        var add = a + t + c
+                                        Class_GlobleVarable.IMDbUrl = add
+                                        var intent = Intent(layout.context, SetWebView::class.java)
+                                        startActivity(intent)
+                                    }
+                                    val Dialog = build.create()
+                                    Dialog.show()
+                                    // 跳出視窗程式結束
+                                    Log.d("tconst", t)
+                                }
+
+                                // 長按加入favorite
+                                list.setOnItemLongClickListener { parent, view, position, id ->
+                                    var tconst = jsonarray.getJSONObject(position).get("tconst").toString()
+                                    var primary = jsonarray.getJSONObject(position).get("primaryTitle").toString()
+                                    var original = jsonarray.getJSONObject(position).get("originalTitle").toString()
+                                    var startYear = jsonarray.getJSONObject(position).get("startYear").toString()
+
+                                    val body = FormBody.Builder()
+                                        .add("id", Class_GlobleVarable.Luid.toString())
+                                        .add("tconst", tconst)
+                                        .add("primary", primary)
+                                        .add("original", original)
+                                        .add("startYear", startYear)
+                                        .build()
+
+                                    val body2 = FormBody.Builder()
+                                        .add("id", Class_GlobleVarable.Luid.toString())
+                                        .add("tconst", tconst)
+                                        .build()
+
+                                    if(Luid == 0){
+                                        Toast.makeText(layout.context, "Please Login First", Toast.LENGTH_SHORT).show()
+                                    }else{
+                                        if(!Class_GlobleVarable.Lovelist.contains(tconst)){
+                                            val client = OkHttpClient()
+
+                                            val request = Request.Builder()
+                                                .url("http://140.136.149.225:80/insertlove.php")
+                                                .post(body)
+                                                .build()
+
+                                            client.newCall(request).enqueue(object : Callback {
+                                                override fun onFailure(call: Call, e: IOException) {
+                                                    Log.d("onFailure", e.message)
+                                                }
+
+                                                override fun onResponse(call: Call, response: Response) {
+                                                    activity!!.runOnUiThread(){
+                                                    }
+                                                }
+                                            })
+                                            Class_GlobleVarable.Lovelist.add(tconst)
+                                            Toast.makeText(layout.context, "Insert in to Favorite", Toast.LENGTH_SHORT).show()
+                                        } else{
+                                            val client = OkHttpClient()
+
+                                            val request = Request.Builder()
+                                                .url("http://140.136.149.225:80/deletelove.php")
+                                                .post(body)
+                                                .build()
+                                            client.newCall(request).enqueue(object : Callback {
+                                                override fun onFailure(call: Call, e: IOException) {
+                                                    Log.d("onFailure", e.message)
+                                                }
+
+                                                override fun onResponse(call: Call, response: Response) {
+                                                    activity!!.runOnUiThread(){
+                                                    }
+                                                }
+                                            })
+                                            Class_GlobleVarable.Lovelist.remove(tconst)
+                                            Toast.makeText(layout.context, "You have deleted the Favorite", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                    true
+                                }
+
+
                             }catch (e: JSONException){
                                 Log.d("Jsonerror ",e.message)
                             }
@@ -103,6 +197,125 @@ class innerTV:Fragment(){
         layout.go_to_main3.setOnClickListener(){
             var Main = Intent(layout.context, MainActivity::class.java)
             startActivity(Main)
+        }
+
+
+        // click every type
+        val btn_action = inflate.findViewById<Button>(R.id.att_1c)
+        btn_action.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "Action")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_adventre = inflate.findViewById<Button>(R.id.att_2c)
+        btn_adventre.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "Adventure")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_animation = inflate.findViewById<Button>(R.id.att_3c)
+        btn_animation.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "animation")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_comedy = inflate.findViewById<Button>(R.id.att_4c)
+        btn_comedy.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "comedy")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_crime = inflate.findViewById<Button>(R.id.att_5c)
+        btn_crime.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "crime")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_documentary = inflate.findViewById<Button>(R.id.att_6c)
+        btn_documentary.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "documentary")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_drama = inflate.findViewById<Button>(R.id.att_7c)
+        btn_drama.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "drama")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_fantasy = inflate.findViewById<Button>(R.id.att_8c)
+        btn_fantasy.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "fantasy")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_horror = inflate.findViewById<Button>(R.id.att_9c)
+        btn_horror.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "horror")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_mystery = inflate.findViewById<Button>(R.id.att_10c)
+        btn_mystery.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "mystery")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_romance = inflate.findViewById<Button>(R.id.att_11c)
+        btn_romance.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "romance")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_scifi = inflate.findViewById<Button>(R.id.att_12c)
+        btn_scifi.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "scifi")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
+        val btn_thriller = inflate.findViewById<Button>(R.id.att_13c)
+        btn_thriller.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("kind", "TV")
+            intent.putExtra("Type", "thriller")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
         }
         return inflate
     }
