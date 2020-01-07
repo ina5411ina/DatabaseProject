@@ -2,26 +2,19 @@ package com.example.tvchildren
 
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.getIntent
-import androidx.lifecycle.ViewModelProviders
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import com.example.tvchildren.Class_GlobleVarable.Companion.favoritelist
-import com.example.tvchildren.Class_GlobleVarable.Companion.userName
-import com.example.tvchildren.crawler.Crawler
-import kotlinx.android.synthetic.main.fragment_like.*
-import java.util.jar.Attributes
+import androidx.fragment.app.Fragment
 
+class FragmentLike_Sec :  Fragment(){
 
-class FragmentLike() : Fragment() {
-    val T = "FragmentLike"
+    val T = "FragmentLike_Sec"
 
     override fun onAttach(context: Context) {
         Log.d(T, "onAttach")
@@ -35,31 +28,27 @@ class FragmentLike() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(T, "onCreateView")
-        val inflate = inflater.inflate(R.layout.fragment_like, container, false)
+        val inflate = inflater.inflate(R.layout.fragment_like__sec, container, false)
 
+//        val userlike = inflate.findViewById<TextView>(R.id.UserLike)
+//        val setfavorite = inflate.findViewById<Button>(R.id.Favorite)
+        val layout = inflate.findViewById<View>(R.id.fragment_Like_Sec)
+        var username = inflate.findViewById<TextView>(R.id.username_input)
+        var userbirth = inflate.findViewById<TextView>(R.id.username_input)
+        var sethobby = inflate.findViewById<Button>(R.id.SetHobby)
 
-        val layout = inflate.findViewById<View>(R.id.fragment_like)
-        val testLogin = inflate.findViewById<Button>(R.id.testLogin)
-        val ttdata = inflate.findViewById<TextView>(R.id.ttdata)
-        val testCrawler = inflate.findViewById<Button>(R.id.testCrawler)
+        username.setText(Class_GlobleVarable.userName)
 
-
-
-
-        testLogin.setOnClickListener(){
-            var intent = Intent(layout.context, RegisterActivity::class.java)
+        //into checkView
+        sethobby.setOnClickListener(){
+            var intent = Intent(layout.context, EditUserpage::class.java)
             startActivity(intent)
         }
+//        setfavorite.setOnClickListener(){
+//            var intent = Intent(layout.context, EditUserpage::class.java)
+//            startActivity(intent)
+//        }
 
-        ttdata.setOnClickListener(){
-            var intent = Intent(layout.context, getTest::class.java)
-            startActivity(intent)
-        }
-
-        testCrawler.setOnClickListener(){
-            var url = "https://www.imdb.com/title/tt4520988/?ref_=nv_sr_srsg_0"
-            Crawler(url)
-        }
         return inflate
     }
 
@@ -97,6 +86,4 @@ class FragmentLike() : Fragment() {
         Log.d(T, "onDetach")
         super.onDetach()
     }
-
-
 }

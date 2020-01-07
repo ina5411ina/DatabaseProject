@@ -1,4 +1,4 @@
-package com.example.tvchildren
+package com.example.tvchildren.Kind_of_Adapter
 
 import android.app.Application
 import android.content.Context
@@ -14,12 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.transition.Transition
+import com.example.tvchildren.R
 
 
-
-
-class MainViewAdapter(val context: Context, val imglist: MutableList<Imgdata>) :RecyclerView.Adapter<MainViewAdapter.Holder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):MainViewAdapter.Holder {
+class Adapter_pic(val context: Context, val imglist: MutableList<String>) :RecyclerView.Adapter<Adapter_pic.Holder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):Adapter_pic.Holder {
         val view = LayoutInflater
             .from(context)
             .inflate(R.layout.recyclemodel, parent, false)
@@ -40,10 +39,10 @@ class MainViewAdapter(val context: Context, val imglist: MutableList<Imgdata>) :
 //        val text2 = itemView.findViewById<TextView>(R.id.release_input)
         val pic = itemView.findViewById<ImageView>(R.id.movie_pic)
 
-        fun bindGroup(imglist:Imgdata, context: Context) {
+        fun bindGroup(imglist:String, context: Context) {
 //            text1.text = imglist.name
 //            text2.text = imglist.data
-            Glide.with(context).load(imglist.pic).into(pic)
+            Glide.with(context).load(imglist).into(pic)
 //            val resourceId = context.resources.getIdentifier(imglist.pic, "drawable", context.packageName)
 //            pic.setImageResource(resourceId)
             // 可多加此段程式以便追蹤

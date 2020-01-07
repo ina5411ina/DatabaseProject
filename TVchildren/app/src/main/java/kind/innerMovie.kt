@@ -143,6 +143,14 @@ class innerMovie:Fragment(){
             startActivity(intent)
         }
 
+        val btn_adventre = inflate.findViewById<Button>(R.id.att_2)
+        btn_adventre.setOnClickListener(){
+            val intent = Intent()
+            intent.putExtra("Type", "Adventure")
+            intent.setClass(inflate.context, TypeListView::class.java)
+            startActivity(intent)
+        }
+
         val btn_animation = inflate.findViewById<Button>(R.id.att_3)
         btn_animation.setOnClickListener(){
             val intent = Intent()

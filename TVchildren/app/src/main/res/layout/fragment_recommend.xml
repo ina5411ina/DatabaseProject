@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_recommend"
     tools:context=".testpage">
 
     <LinearLayout
@@ -24,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/p1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,20 +124,14 @@
             </LinearLayout>
 
             <VideoView
-                android:id="@+id/videoView"
-                android:layout_width="match_parent"
+                android:id="@+id/video"
+                android:layout_width="fill_parent"
                 android:layout_height="0dp"
+                android:layout_gravity="center"
                 android:layout_weight="4" />
 
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/backbtn"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="@string/back" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

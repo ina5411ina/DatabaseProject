@@ -3,11 +3,15 @@ package com.example.tvchildren
 import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
+import android.widget.VideoView
+
 
 
 class FragmentRecommend : Fragment() {
@@ -25,7 +29,22 @@ class FragmentRecommend : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(T, "onCreateView")
-        return inflater!!.inflate(R.layout.fragment_recommend, container, false)
+        var inflate = inflater!!.inflate(R.layout.fragment_recommend, container, false)
+        var layout = inflate.findViewById<View>(R.id.fragment_recommend)
+        var video = inflate.findViewById<VideoView>(R.id.video)
+        var mediaController: MediaController? = null
+
+//
+        video.setVideoPath("https://imdb-video.media-imdb.com/vi2143993625/1434659607842-pgv4ql-1574275019638.mp4?Expires=1578482633&Signature=oSrMI3MhoXnJbp7K5RW8UATEqMwRE~vBLwQfVlAY7K5ke6xxXKqepBUjDKXNnhON5AyQfMTVmHpriDEYQL6AWsq8olOqMI-VS2Tw1YwS4CS0OlReAP9Yxtm85rmrWuePGL15e47arxI0kF~q7-1J1bhOF3DjJPId18KMLWYoBZXgehhVjg~~mDm4aDBxB5X1okAVtad~ghUHcK7Q6nTOH4VjtG8QGYN15k1cWNKDeSmnMs9PWtj~v3I4jAhiro6SW4ySXP~xAozLHhaNm0DOmT5cIvLwYOmLzZ-2qsRMBh3DEG9fTiN9vl~fVGN4NLymhKrasIx~nwVIZtaqfnZQew__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA")
+        mediaController = MediaController(layout.context)
+        mediaController?.setAnchorView(video)
+        video.setMediaController(mediaController)
+        video.start()
+
+
+
+
+        return inflate
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

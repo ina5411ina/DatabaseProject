@@ -30,8 +30,8 @@ class Adapter: RecyclerView.Adapter<Adapter.ViewHolder> {
         val viewHolder = ViewHolder(cell)
         cell.layoutParams.height = 150
         viewHolder.movie_pic = cell.findViewById(R.id.movie_pic)
-        viewHolder.filmname_input = cell.findViewById(R.id.filmname_input)
-        viewHolder.release_input = cell.findViewById(R.id.release_input)
+//        viewHolder.filmname_input = cell.findViewById(R.id.filmname_input)
+//        viewHolder.release_input = cell.findViewById(R.id.release_input)
 
         return viewHolder
     }

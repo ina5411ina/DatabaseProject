@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 
 import android.widget.Button
+import com.example.tvchildren.Class_GlobleVarable.Companion.login_tag
 import com.example.tvchildren.test.Adapter
 
 
@@ -36,7 +37,13 @@ class MainActivity : AppCompatActivity() {
             ShowFragmentRecommend()
         }
         like_btn.setOnClickListener(){
-            ShowFragmentLike()
+            if(login_tag == 0){
+                ShowFragmentLike()
+            }
+            else{
+                ShowFragmentLike_Sec()
+            }
+
         }
     }
 
@@ -60,6 +67,14 @@ class MainActivity : AppCompatActivity() {
     fun ShowFragmentLike(){
         val transaction = manager.beginTransaction()
         val fragment = FragmentLike()
+        transaction.replace(R.id.fragment_holder, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    fun ShowFragmentLike_Sec(){
+        val transaction = manager.beginTransaction()
+        val fragment = FragmentLike_Sec()
         transaction.replace(R.id.fragment_holder, fragment)
         transaction.addToBackStack(null)
         transaction.commit()

@@ -1,24 +1,28 @@
 package com.example.tvchildren
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.android.extension.responseJson
 import kotlinx.android.synthetic.main.register.*
+import okhttp3.*
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 
 class RegisterActivity : AppCompatActivity() {
 
-    internal var RegisterURL = ""
-    private var etname: EditText? = null
-    private var ethobby:EditText? = null
-    private var etusername:EditText? = null
-    private var etpassword:EditText? = null
-    private var btnregister: Button? = null
-    private var tvlogin: TextView? = null
+    internal var RegisterURL = "http://140.136.149.225:80/註冊.php"
     private var preferenceHelper: PreferenceHelper? = null
     private val RegTask = 1
     private var mProgressDialog: ProgressDialog? = null
@@ -27,18 +31,17 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register)
 
-//        preferenceHelper = PreferenceHelper(this)
+        var etusername = findViewById<EditText>(R.id.etusername)
+        var etpassword = findViewById<EditText>(R.id.etpassword)
+
+        preferenceHelper = PreferenceHelper(this)
 
 //        if (preferenceHelper!!.getIsLogin()) {
-//            val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+//            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
 //            startActivity(intent)
 //            this.finish()
 //        }
-
-        var etname = findViewById<View>(R.id.etname)
-        var etusername = findViewById<View>(R.id.etusername)
-        var etpassword = findViewById<View>(R.id.etpassword)
 
         var btnregister = findViewById<View>(R.id.btn)
         var tvlogin = findViewById<TextView>(R.id.tvlogin)
@@ -48,15 +51,53 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        btnregister!!.setOnClickListener(){
-//            try {
+        btnregister!!.setOnClickListener(){
+            try {
 //                register()
-//            } catch (e: IOException) {
-//                e.printStackTrace()
-//            } catch (e: JSONException) {
-//                e.printStackTrace()
-//            }
-//        }
+                val client = OkHttpClient()
+                val body = FormBody.Builder()
+                    .add("name", etusername.text.toString())
+                    .add("birthyear", "1999")
+                    .add("birthmon", "3")
+                    .add("birthday", "9")
+                    .add("password", etpassword.text.toString())
+                    .build()
+
+                val request = Request.Builder()
+                    .url(RegisterURL)
+                    .post(body)
+                    .build()
+
+                client.newCall(request).enqueue(object: Callback{
+                    override fun onFailure(call: Call, e: IOException) {
+                        Log.d("onFailure", e.message)
+                    }
+
+                    override fun onResponse(call: Call, response: Response) {
+                        runOnUiThread {
+                            Log.d("onResponse", "in here")
+                            var responseData = response.body()!!.string()
+                            try{
+                                var json = JSONArray(responseData)
+                                var uid= json.getJSONObject(0).get("uid")
+                                Log.d("uid", uid.toString())
+                                if(uid != 0){
+                                    var intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                                    startActivity(intent)
+                                }
+
+                            }catch (e:JSONException){
+                                Log.d("Jsonerror", e.message)
+                            }
+                        }
+                    }
+                })
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
 //
         testMain.setOnClickListener(){
             var intent = Intent(this, MainActivity::class.java)
@@ -66,131 +107,58 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-//    @Throws(IOException::class, JSONException::class)
-//    private fun register() {
-//
+    private fun register() {
+        val client = OkHttpClient()
+        val body = FormBody.Builder()
+            .add("birthyear", "1999")
+            .add("birthmon", "3")
+            .add("birthday", "9")
+            .add("password", etpassword.text.toString())
+            .build()
+
+        val request = Request.Builder()
+            .url(RegisterURL)
+            .post(body)
+            .build()
+
 //        showSimpleProgressDialog(this@RegisterActivity, null, "Loading...", false)
-//
-//        try {
-//
-//            Fuel.post(RegisterURL, listOf("name" to  etname!!.text.toString()
-//                , "hobby" to  ethobby!!.text.toString()
-//                , "username" to  etusername!!.text.toString()
-//                , "password" to  etpassword!!.text.toString()
-//            )).responseJson { request, response, result ->
-//                Log.d("plzzzzz", result.get().content)
-//                onTaskCompleted(result.get().content,RegTask)
-//            }
-//        } catch (e: Exception) {
-//
-//        } finally {
-//
-//        }
-//
-//    }
-//
-//    private fun onTaskCompleted(response: String, task: Int) {
-//        Log.d("responsejson", response)
+
+        client.newCall(request).enqueue(object: Callback{
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d("onFailure", e.message)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                runOnUiThread {
+                    Log.d("onResponse", "in here")
+                    var responseData = response.body()!!.string()
+                    try{
+                        var json = JSONObject(responseData)
+                        var uid= json.get("id")
+                        Log.d("uid", uid.toString())
+                    }catch (e:JSONException){
+                        Log.d("Jsonerror", e.message)
+                    }
+                }
+            }
+        })
+
+    }
+
+
+    private fun onTaskCompleted(response: Any, task: Int) {
+        Log.d("responsejson", response.toString())
 //        removeSimpleProgressDialog()
-//        when (task) {
-//            RegTask -> if (isSuccess(response)) {
-//                saveInfo(response)
-//                Toast.makeText(this@RegisterActivity, "Registered Successfully!", Toast.LENGTH_SHORT).show()
-//                val intent = Intent(this@RegisterActivity, MainActivity::class.java)
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-//                startActivity(intent)
-//                this.finish()
-//            } else {
-//                Toast.makeText(this@RegisterActivity, getErrorMessage(response), Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
-//
-//    fun saveInfo(response: String) {
-//        preferenceHelper!!.putIsLogin(true)
-//        try {
-//            val jsonObject = JSONObject(response)
-//            if (jsonObject.getString("status") == "true") {
-//                val dataArray = jsonObject.getJSONArray("data")
-//                for (i in 0 until dataArray.length()) {
-//
-//                    val dataobj = dataArray.getJSONObject(i)
-//                    preferenceHelper!!.putName(dataobj.getString("name"))
-//                    preferenceHelper!!.putHobby(dataobj.getString("hobby"))
-//                }
-//            }
-//        } catch (e: JSONException) {
-//            e.printStackTrace()
-//        }
-//
-//    }
-//
-//    fun isSuccess(response: String): Boolean {
-//        try {
-//            val jsonObject = JSONObject(response)
-//            return if (jsonObject.optString("status") == "true") {
-//                true
-//            } else {
-//
-//                false
-//            }
-//
-//        } catch (e: JSONException) {
-//            e.printStackTrace()
-//        }
-//
-//        return false
-//    }
-//
-//    fun getErrorMessage(response: String): String {
-//        try {
-//            val jsonObject = JSONObject(response)
-//            return jsonObject.getString("message")
-//
-//        } catch (e: JSONException) {
-//            e.printStackTrace()
-//        }
-//
-//        return "No data"
-//    }
-//
-//    fun showSimpleProgressDialog(context: Context, title: String?, msg: String, isCancelable: Boolean) {
-//        try {
-//            if (mProgressDialog == null) {
-//                mProgressDialog = ProgressDialog.show(context, title, msg)
-//                mProgressDialog!!.setCancelable(isCancelable)
-//            }
-//            if (!mProgressDialog!!.isShowing) {
-//                mProgressDialog!!.show()
-//            }
-//
-//        } catch (ie: IllegalArgumentException) {
-//            ie.printStackTrace()
-//        } catch (re: RuntimeException) {
-//            re.printStackTrace()
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//
-//    }
-//
-//    fun removeSimpleProgressDialog() {
-//        try {
-//            if (mProgressDialog != null) {
-//                if (mProgressDialog!!.isShowing) {
-//                    mProgressDialog!!.dismiss()
-//                    mProgressDialog = null
-//                }
-//            }
-//        } catch (ie: IllegalArgumentException) {
-//            ie.printStackTrace()
-//
-//        } catch (re: RuntimeException) {
-//            re.printStackTrace()
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//
-//    }
-//
+        when (task) {
+            RegTask -> if (response != 0) {
+                Toast.makeText(this@RegisterActivity, "Registered Successfully!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                this.finish()
+            }
+        }
+    }
+
+
 }
