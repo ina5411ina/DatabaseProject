@@ -187,51 +187,63 @@ class EditUserpage : AppCompatActivity() {
         hobby_finishbtn.setOnClickListener(){
             hobbyState = 1
             val client = OkHttpClient()
-            val request = Request.Builder()
-                .url("http://140.136.149.225:80/deletehobby.php")
-                .build()
 
-            client.newCall(request).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
-                    Log.d("onFailure", e.message)
-                }
+                val body = FormBody.Builder()
+                    .add("id",Luid.toString())
+                    .build()
 
-                override fun onResponse(call: Call, response: Response) {
-                    runOnUiThread() {
-                        Log.d("onResponse", "In here" )
+                val request = Request.Builder()
+                    .url("http://140.136.149.225:80/deleteallhobby.php")
+                    .post(body)
+                    .build()
+
+                client.newCall(request).enqueue(object : Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        Log.d("onFailure", e.message)
                     }
-                }
-            })
+
+                    override fun onResponse(call: Call, response: Response) {
+                            runOnUiThread() {
+                                Log.d("onResponse", "In here" )
+                            }
+                    }
+                })
+
+
+
 
             Log.d("favoritelist_size", (favoritelist.size).toString())
             Log.d("uid", Luid.toString())
             for( i in favoritelist) {
                 Log.d("favoritelist_size", i)
             }
-            for( i in favoritelist){
-                val client2 = OkHttpClient()
-                val body = FormBody.Builder()
-                    .add("id",Luid.toString())
-                    .add("genres", i)
-                    .build()
-                val request = Request.Builder()
-                    .url("http://140.136.149.225:80/inserthobby.php")
-                    .post(body)
-                    .build()
+            Thread{
+                for( i in favoritelist){
+                    val client2 = OkHttpClient()
+                    val body = FormBody.Builder()
+                        .add("id",Luid.toString())
+                        .add("genres", i)
+                        .build()
+                    val request = Request.Builder()
+                        .url("http://140.136.149.225:80/inserthobby.php")
+                        .post(body)
+                        .build()
 
-                client2.newCall(request).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-                        Log.d("onFailure", e.message)
-                    }
-
-                    override fun onResponse(call: Call, response: Response) {
-                        runOnUiThread() {
-                            Log.d("onResponse", "In here" )
+                    client2.newCall(request).enqueue(object : Callback {
+                        override fun onFailure(call: Call, e: IOException) {
+                            Log.d("onFailure", e.message)
                         }
-                    }
-                })
 
-            }
+                        override fun onResponse(call: Call, response: Response) {
+                            runOnUiThread() {
+                                Log.d("onResponse", "In here" )
+                            }
+                        }
+                    })
+
+                }
+            }.start()
+
             finish()
         }
     }

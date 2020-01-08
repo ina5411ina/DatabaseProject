@@ -64,7 +64,7 @@
         android:maxLength="2"
         android:singleLine="true"
         android:maxLines="1"
-        android:hint="Enter Your BirthDay. EX. 1" />
+        android:hint="Enter Your BirthMonth. EX. 11" />
 
     <EditText
         android:layout_width="match_parent"
@@ -79,7 +79,7 @@
         android:maxLength="2"
         android:singleLine="true"
         android:maxLines="1"
-        android:hint="Enter Your BirthYear" />
+        android:hint="Enter Your BirthDay EX.30" />
 
     <Button
         android:layout_width="match_parent"

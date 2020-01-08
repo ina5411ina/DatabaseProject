@@ -99,12 +99,12 @@ class TypeListView : AppCompatActivity() {
                                 var original = jsonarray.getJSONObject(position).get("originalTitle").toString()
                                 var startYear = jsonarray.getJSONObject(position).get("startYear").toString()
 
+
                                 val body = FormBody.Builder()
                                     .add("id", Luid.toString())
                                     .add("tconst", tconst)
                                     .add("primary", primary)
                                     .add("original", original)
-                                    .add("startYear", startYear)
                                     .build()
 
                                 val body2 = FormBody.Builder()
@@ -119,11 +119,11 @@ class TypeListView : AppCompatActivity() {
                                         insertlove(body)
                                         Lovelist.add(tconst)
                                         LovelistData.add(Class_GlobleVarable.Companion.LoveData(primary,original,startYear,url))
-                                        Log.d("primary", primary)
-                                        Log.d("original", original)
-                                        Log.d("startYear", startYear)
-                                        Log.d("url", url)
-                                        Log.d("LIST", LovelistData[i].primary)
+                                        Log.d("In-primary", primary)
+                                        Log.d("In-original", original)
+                                        Log.d("In-startYear", startYear)
+                                        Log.d("In-url", url)
+                                        Log.d("In-LIST", LovelistData[i].primary)
                                         i = i + 1
                                         Toast.makeText(this@TypeListView, "Insert in to Favorite", Toast.LENGTH_SHORT).show()
                                     } else{

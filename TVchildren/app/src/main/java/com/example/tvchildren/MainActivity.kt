@@ -54,39 +54,42 @@ class MainActivity : AppCompatActivity() {
                         .build()
 
                     val request = Request.Builder()
-                        .url("http://140.136.149.225:80/推薦.php")
+                        .url("http://140.136.149.225:80/recommend.php")
                         .post(body)
                         .build()
-                    client.newCall(request).enqueue(object : Callback {
-                        override fun onFailure(call: Call, e: IOException) {
-                            Log.d("onFailure", e.message)
-                        }
 
-                        override fun onResponse(call: Call, response: Response) {
-                            runOnUiThread(){
-                                var responseData = response.body()!!.string()
-//                            Log.i("seeRespond",response.body()!!.string())
-                                try {
-                                    var jsonarray = JSONArray(responseData)
-
-                                    var len = jsonarray.length()
-
-                                    val json = jsonarray.getJSONObject((0..len).random())
-                                    var tconst = json.getString("tconst" )
-                                    var a:String = "https://www.imdb.com/title/"
-                                    var c:String = "/?ref_=nv_sr_srsg_0"
-                                    var url = a + tconst + c
-                                    RecommendUrl = url
-                                    Log.d("Tconst", tconst)
-
-
-                                }catch (e: JSONException){
-                                    Log.d("Jsonerror ",e.message)
-                                }
-
+                        client.newCall(request).enqueue(object : Callback {
+                            override fun onFailure(call: Call, e: IOException) {
+                                Log.d("onFailure", e.message)
                             }
-                        }
-                    })
+
+                            override fun onResponse(call: Call, response: Response) {
+                                Thread(){
+                                    var responseData = response.body()!!.string()
+//                            Log.i("seeRespond",response.body()!!.string())
+                                    try {
+                                        var jsonarray = JSONArray(responseData)
+
+                                        var len = jsonarray.length()
+
+                                        val json = jsonarray.getJSONObject(0)
+                                        var tconst = json.getString("tconst" )
+                                        var a:String = "https://www.imdb.com/title/"
+                                        var c:String = "/?ref_=nv_sr_srsg_0"
+                                        var url = a + tconst + c
+                                        RecommendUrl = url
+                                        Log.d("Tconst", tconst)
+
+
+                                    }catch (e: JSONException){
+                                        Log.d("Jsonerror ",e.message)
+                                    }
+
+                                }.start()
+                            }
+                        })
+
+
 
 
                     ShowFragmentRecommend2()
