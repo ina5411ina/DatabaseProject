@@ -27,38 +27,42 @@
                 android:layout_weight="1"
                 android:src="@drawable/p1" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+<!--            <LinearLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_margin="20dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical">-->
 
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="User Name" />
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/textView7"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="30dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="User Name" />&ndash;&gt;-->
 
-                <TextView
-                    android:id="@+id/username_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/username_input"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="30dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_weight="1" />&ndash;&gt;-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Birthdat:" />
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="30dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="Birthday:" />&ndash;&gt;-->
 
-                <TextView
-                    android:id="@+id/userbirth_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/userbirth_input"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="30dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_weight="1" />&ndash;&gt;-->
+<!--            </LinearLayout>-->
 
         </LinearLayout>
 

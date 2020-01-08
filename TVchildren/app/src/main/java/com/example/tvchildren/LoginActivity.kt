@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
                                     Log.d("login", islogined.toString())
                                     if(islogined.toString() == "true"){
                                         Luid = uid
-                                        userName = etusername.text.toString()
+
                                         login_tag = 1
                                         var intent = Intent(this@LoginActivity, MainActivity::class.java)
                                         startActivity(intent)
@@ -106,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
         showSimpleProgressDialog(this@LoginActivity, null, "Loading...", false)
         val client = OkHttpClient()
         val body = FormBody.Builder()
-//            .add("password",etusername.text.toString() )
+//            .add("password",etusername.text.toStri ng() )
 //            .add("password", etpassword.text.toString())
             .build()
 

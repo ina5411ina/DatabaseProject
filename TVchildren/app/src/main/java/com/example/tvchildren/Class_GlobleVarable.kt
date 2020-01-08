@@ -12,6 +12,9 @@ class Class_GlobleVarable: Application() {
 
         //for FragmentMain
 
+        //recommend
+        var RecommendUrl = ""
+
         //recycleview
         var imglist:MutableList<String> = mutableListOf()
 
@@ -23,11 +26,12 @@ class Class_GlobleVarable: Application() {
         var login_tag = 0
         var Luid:Any = 0
         var userName:String = ""
-        var userbirth:String = ""
+        var userBirth:String = ""
 
         //EditUserPage
         var favoritelist:ArrayList<String> = arrayListOf()
         var btnboxState:MutableMap<String, Int> = mutableMapOf("Action" to 0, "Adventure" to 0, "Animation" to 0, "Comedy" to 0, "Crime" to 0, "Documentary" to 0, "Drama" to 0, "Fantasy" to 0, "Horror" to 0, "Mystery" to 0, "Romance" to 0, "Scifi" to 0, "Thriller" to 0)
+        var hobbyState = 0
 
         //for InsertLove
         data class LoveData(var primary:String, var original:String, var startYear:String, var url:String)

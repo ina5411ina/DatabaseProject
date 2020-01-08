@@ -6,8 +6,17 @@ import android.os.Bundle
 import android.util.Log
 
 import android.widget.Button
+import android.widget.Toast
+import com.example.tvchildren.Class_GlobleVarable.Companion.RecommendUrl
+import com.example.tvchildren.Class_GlobleVarable.Companion.hobbyState
 import com.example.tvchildren.Class_GlobleVarable.Companion.login_tag
 import com.example.tvchildren.test.Adapter
+import kotlinx.android.synthetic.main.activity_edituserpage.*
+import okhttp3.*
+import org.json.JSONArray
+import org.json.JSONException
+import java.io.IOException
+import java.util.*
 
 
 val list = mutableListOf<Adapter.Model>()
@@ -34,7 +43,58 @@ class MainActivity : AppCompatActivity() {
             Log.d("aaa","btn ok")
         }
         recommend_btn.setOnClickListener(){
-            ShowFragmentRecommend()
+            if(login_tag == 0){
+                ShowFragmentRecommend()
+            } else{
+                if(hobbyState == 1){
+                    val client = OkHttpClient()
+
+                    val body = FormBody.Builder()
+                        .add("id", Class_GlobleVarable.Luid.toString())
+                        .build()
+
+                    val request = Request.Builder()
+                        .url("http://140.136.149.225:80/推薦.php")
+                        .post(body)
+                        .build()
+                    client.newCall(request).enqueue(object : Callback {
+                        override fun onFailure(call: Call, e: IOException) {
+                            Log.d("onFailure", e.message)
+                        }
+
+                        override fun onResponse(call: Call, response: Response) {
+                            runOnUiThread(){
+                                var responseData = response.body()!!.string()
+//                            Log.i("seeRespond",response.body()!!.string())
+                                try {
+                                    var jsonarray = JSONArray(responseData)
+
+                                    var len = jsonarray.length()
+
+                                    val json = jsonarray.getJSONObject((0..len).random())
+                                    var tconst = json.getString("tconst" )
+                                    var a:String = "https://www.imdb.com/title/"
+                                    var c:String = "/?ref_=nv_sr_srsg_0"
+                                    var url = a + tconst + c
+                                    RecommendUrl = url
+                                    Log.d("Tconst", tconst)
+
+
+                                }catch (e: JSONException){
+                                    Log.d("Jsonerror ",e.message)
+                                }
+
+                            }
+                        }
+                    })
+
+
+                    ShowFragmentRecommend2()
+                }
+                else{
+                    ShowFragmentRecommend()
+                }
+            }
         }
         like_btn.setOnClickListener(){
             if(login_tag == 0){
@@ -43,8 +103,8 @@ class MainActivity : AppCompatActivity() {
             else{
                 ShowFragmentLike_Sec()
             }
-
         }
+
     }
 
     fun ShowFragmentMain(){
@@ -62,8 +122,16 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.fragment_holder, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
-
     }
+
+    fun ShowFragmentRecommend2(){
+        val transaction = manager.beginTransaction()
+        val fragment = FragmentRecommend2()
+        transaction.replace(R.id.fragment_holder, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
     fun ShowFragmentLike(){
         val transaction = manager.beginTransaction()
         val fragment = FragmentLike()

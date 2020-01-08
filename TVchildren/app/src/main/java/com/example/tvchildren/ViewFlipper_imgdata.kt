@@ -42,7 +42,7 @@ object datapic {
         Imgdata("https://movies.tw.campaign.yahoo.net/i/o/production/movies/December2019/YO3BQuWczf0gyS4bkkNm-505x720.jpg", "test5", "test5"),
         Imgdata("https://movies.tw.campaign.yahoo.net/i/o/production/movies/November2019/JmoAzUZdKfYlD71KSSsi-912x1305.jpg", "test5", "test5"),
         Imgdata("https://movies.tw.campaign.yahoo.net/i/o/production/movies/November2019/YThUSgl1zkdp5KHXcQQB-800x1142.jpg", "test5", "test5"),
-        Imgdata("https://www.imdb.com/title/tt4520988/mediaviewer", "test5", "test5"),
+        Imgdata("https://movies.tw.campaign.yahoo.net/i/o/production/movies/October2019/xegebXu4mrEyhZjv3fam-509x720.jpg", "test5", "test5"),
         Imgdata("https://m.media-amazon.com/images/M/MV5BMjA0YjYyZGMtN2U0Ni00YmY4LWJkZTItYTMyMjY3NGYyMTJkXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_SX675_AL_.jpg", "test5", "test5")
     )
 

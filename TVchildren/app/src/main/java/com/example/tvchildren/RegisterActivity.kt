@@ -1,6 +1,5 @@
 package com.example.tvchildren
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -26,7 +25,7 @@ class RegisterActivity : AppCompatActivity() {
     internal var RegisterURL = "http://140.136.149.225:80/註冊.php"
     private var preferenceHelper: PreferenceHelper? = null
     private val RegTask = 1
-    private var mProgressDialog: ProgressDialog? = null
+//    private var mProgressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +73,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 client.newCall(request).enqueue(object: Callback{
                     override fun onFailure(call: Call, e: IOException) {
-                        Log.d("onFailure", e.message)
+                        Log.d("onFailure", "")
                     }
 
                     override fun onResponse(call: Call, response: Response) {
@@ -86,12 +85,13 @@ class RegisterActivity : AppCompatActivity() {
                                 var uid= json.getJSONObject(0).get("uid")
                                 Log.d("uid", uid.toString())
                                 if(uid != 0){
+                                    Class_GlobleVarable.userBirth = birthy.text.toString()
                                     var intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                                     startActivity(intent)
                                 }
 
                             }catch (e:JSONException){
-                                Log.d("Jsonerror", e.message)
+                                Log.d("Jsonerror", "")
                             }
                         }
                     }
@@ -108,58 +108,7 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun register() {
-        val client = OkHttpClient()
-        val body = FormBody.Builder()
-            .add("birthyear", "1999")
-            .add("birthmon", "3")
-            .add("birthday", "9")
-            .add("password", etpassword.text.toString())
-            .build()
 
-        val request = Request.Builder()
-            .url(RegisterURL)
-            .post(body)
-            .build()
-
-//        showSimpleProgressDialog(this@RegisterActivity, null, "Loading...", false)
-
-        client.newCall(request).enqueue(object: Callback{
-            override fun onFailure(call: Call, e: IOException) {
-                Log.d("onFailure", e.message)
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                runOnUiThread {
-                    Log.d("onResponse", "in here")
-                    var responseData = response.body()!!.string()
-                    try{
-                        var json = JSONObject(responseData)
-                        var uid= json.get("id")
-                        Log.d("uid", uid.toString())
-                    }catch (e:JSONException){
-                        Log.d("Jsonerror", e.message)
-                    }
-                }
-            }
-        })
-
-    }
-
-
-    private fun onTaskCompleted(response: Any, task: Int) {
-        Log.d("responsejson", response.toString())
-//        removeSimpleProgressDialog()
-        when (task) {
-            RegTask -> if (response != 0) {
-                Toast.makeText(this@RegisterActivity, "Registered Successfully!", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                this.finish()
-            }
-        }
-    }
 
 
 }

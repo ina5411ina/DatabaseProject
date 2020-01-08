@@ -78,7 +78,7 @@ class innerMovie:Fragment(){
                         activity!!.runOnUiThread(){
                             Log.d("onResponse", "in here")
 
-                            var responseData = response.body()!!.string()
+                            var responseData = response.body()?.string()
 
                             try {
                                 var jsonarray = JSONArray(responseData)

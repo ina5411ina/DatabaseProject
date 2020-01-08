@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tvchildren.Class_GlobleVarable.Companion.Luid
 import com.example.tvchildren.Class_GlobleVarable.Companion.btnboxState
 import com.example.tvchildren.Class_GlobleVarable.Companion.favoritelist
+import com.example.tvchildren.Class_GlobleVarable.Companion.hobbyState
 import kotlinx.android.synthetic.main.activity_edituserpage.*
 import okhttp3.*
 import org.json.JSONArray
@@ -184,6 +185,23 @@ class EditUserpage : AppCompatActivity() {
         }
 
         hobby_finishbtn.setOnClickListener(){
+            hobbyState = 1
+            val client = OkHttpClient()
+            val request = Request.Builder()
+                .url("http://140.136.149.225:80/deletehobby.php")
+                .build()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.d("onFailure", e.message)
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    runOnUiThread() {
+                        Log.d("onResponse", "In here" )
+                    }
+                }
+            })
 
             Log.d("favoritelist_size", (favoritelist.size).toString())
             Log.d("uid", Luid.toString())
@@ -191,7 +209,7 @@ class EditUserpage : AppCompatActivity() {
                 Log.d("favoritelist_size", i)
             }
             for( i in favoritelist){
-                val client = OkHttpClient()
+                val client2 = OkHttpClient()
                 val body = FormBody.Builder()
                     .add("id",Luid.toString())
                     .add("genres", i)
@@ -201,7 +219,7 @@ class EditUserpage : AppCompatActivity() {
                     .post(body)
                     .build()
 
-                client.newCall(request).enqueue(object : Callback {
+                client2.newCall(request).enqueue(object : Callback {
                     override fun onFailure(call: Call, e: IOException) {
                         Log.d("onFailure", e.message)
                     }

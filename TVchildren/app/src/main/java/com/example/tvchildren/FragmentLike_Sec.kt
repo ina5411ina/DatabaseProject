@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.tvchildren.Class_GlobleVarable.Companion.userBirth
+import com.example.tvchildren.Class_GlobleVarable.Companion.userName
 
 class FragmentLike_Sec :  Fragment(){
 
@@ -33,11 +35,17 @@ class FragmentLike_Sec :  Fragment(){
 //        val userlike = inflate.findViewById<TextView>(R.id.UserLike)
 //        val setfavorite = inflate.findViewById<Button>(R.id.Favorite)
         val layout = inflate.findViewById<View>(R.id.fragment_Like_Sec)
-        var username = inflate.findViewById<TextView>(R.id.username_input)
-        var userbirth = inflate.findViewById<TextView>(R.id.username_input)
+//        var username = inflate.findViewById<TextView>(R.id.username_input)
+//        var userbirth = inflate.findViewById<TextView>(R.id.userbirth_input)
         var sethobby = inflate.findViewById<Button>(R.id.SetHobby)
         var lovemovie = inflate.findViewById<Button>(R.id.lovemovie)
-        username.setText(Class_GlobleVarable.userName)
+//
+//        username.setText(Class_GlobleVarable.userName)
+//        userbirth.setText(Class_GlobleVarable.userBirth)
+
+        Log.d("userName", userName)
+        Log.d("userbirth", userBirth)
+
 
         //into checkView
         sethobby.setOnClickListener(){

@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoveMovie"></activity>
+        <activity android:name=".FragmentRecommend2"></activity>
+        <activity android:name=".LoveMovie" />
         <activity android:name=".SetWebView" />
         <activity
             android:name=".ui.login.SetWebView"

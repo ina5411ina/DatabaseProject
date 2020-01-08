@@ -30,14 +30,14 @@ class TypeListView : AppCompatActivity() {
         var Type = "%"+ type +"%"
         var kind = intent.getStringExtra("kind")
 
-        var too:String = String()
+        var too:String = "http://140.136.149.225:80/search_movie.php"
 
-        when(kind){
-            "Movie" -> too = "http://140.136.149.225:80/search_movie.php"
-            "Short" -> too = "http://140.136.149.225:80/search_short.php"
-            "TV" -> too = "http://140.136.149.225:80/search_tv.php"
-            else -> too = "http://140.136.149.225:80/search_movie.php"
-        }
+//        when(kind){
+//            "Movie" -> too = ""
+//            "Short" -> too = "http://140.136.149.225:80/search_short.php"
+//            "TV" -> too = "http://140.136.149.225:80/search_tv.php"
+//            else -> too = "http://140.136.149.225:80/search_movie.php"
+//        }
 
 //        Log.d("Type", Type)
 
@@ -65,77 +65,83 @@ class TypeListView : AppCompatActivity() {
                 runOnUiThread(){
                     Log.d("onResponse", "in here")
 
-                    var responseData = response.body()!!.string()
+                    Log.i("kkkkk",response.toString())
+                    Log.i("kkkkk",response.body().toString())
+
+                    var responseData = response.body()?.string()?:""
 //                            Log.i("seeRespond",response.body()!!.string())
-
-                    try {
-                        var jsonarray = JSONArray(responseData)
-                        for(i in 0..19){
-                            if(!jsonarray.isNull(i)){
-                                val json = jsonarray.getJSONObject(i)
-                                adapter.addAll(json.getString("primaryTitle" )+ "\n" + json.getString("originalTitle") + "\t" + json.getString("startYear"))
-                            }
-                        }
-                        listv.setOnItemClickListener{parent, view, position, id ->
-                            var title = jsonarray.getJSONObject(position).get("primaryTitle").toString()
-                            var t = jsonarray.getJSONObject(position).get("tconst").toString()
-                            openDialog(t, title)
-                            Log.d("tconst", t)
-                        }
-
-                        var i = 0
-                        listv.setOnItemLongClickListener { parent, view, position, id ->
-                            Log.d("Tag", "setOnItemLongClickListener")
-                            Log.d("Luid", Luid.toString())
-
-                            var a:String = "https://www.imdb.com/title/"
-                            var c:String = "/?ref_=nv_sr_srsg_0"
-                            var tconst = jsonarray.getJSONObject(position).get("tconst").toString()
-                            var url = a + tconst +c
-                            var primary = jsonarray.getJSONObject(position).get("primaryTitle").toString()
-                            var original = jsonarray.getJSONObject(position).get("originalTitle").toString()
-                            var startYear = jsonarray.getJSONObject(position).get("startYear").toString()
-
-                            val body = FormBody.Builder()
-                                .add("id", Luid.toString())
-                                .add("tconst", tconst)
-                                .add("primary", primary)
-                                .add("original", original)
-                                .add("startYear", startYear)
-                                .build()
-
-                            val body2 = FormBody.Builder()
-                                .add("id", Luid.toString())
-                                .add("tconst", tconst)
-                                .build()
-
-                            if(Luid == 0){
-                                Toast.makeText(this@TypeListView, "Please Login First", Toast.LENGTH_SHORT).show()
-                            } else{
-                                if(!Lovelist.contains(tconst)){
-                                    insertlove(body)
-                                    Lovelist.add(tconst)
-                                    LovelistData.add(Class_GlobleVarable.Companion.LoveData(primary,original,startYear,url))
-                                    Log.d("primary", primary)
-                                    Log.d("original", original)
-                                    Log.d("startYear", startYear)
-                                    Log.d("url", url)
-                                    Log.d("LIST", LovelistData[i].primary)
-                                    i = i + 1
-                                    Toast.makeText(this@TypeListView, "Insert in to Favorite", Toast.LENGTH_SHORT).show()
-                                } else{
-                                    deletelove(body2)
-                                    Lovelist.remove(tconst)
-                                    LovelistData.remove(Class_GlobleVarable.Companion.LoveData(primary,original,startYear,url))
-                                    Toast.makeText(this@TypeListView, "You have deleted the Favorite", Toast.LENGTH_SHORT).show()
+                    if (responseData  != ""){
+                        try {
+                            var jsonarray = JSONArray(responseData)
+                            for(i in 0..19){
+                                if(!jsonarray.isNull(i)){
+                                    val json = jsonarray.getJSONObject(i)
+                                    adapter.addAll(json.getString("primaryTitle" )+ "\n" + json.getString("originalTitle") + "\t" + json.getString("startYear"))
                                 }
                             }
-                            true
-                        }
+                            listv.setOnItemClickListener{parent, view, position, id ->
+                                var title = jsonarray.getJSONObject(position).get("primaryTitle").toString()
+                                var t = jsonarray.getJSONObject(position).get("tconst").toString()
+                                openDialog(t, title)
+                                Log.d("tconst", t)
+                            }
 
-                    }catch (e: JSONException){
-                        Log.d("Jsonerror ",e.message)
+                            var i = 0
+                            listv.setOnItemLongClickListener { parent, view, position, id ->
+                                Log.d("Tag", "setOnItemLongClickListener")
+                                Log.d("Luid", Luid.toString())
+
+                                var a:String = "https://www.imdb.com/title/"
+                                var c:String = "/?ref_=nv_sr_srsg_0"
+                                var tconst = jsonarray.getJSONObject(position).get("tconst").toString()
+                                var url = a + tconst +c
+                                var primary = jsonarray.getJSONObject(position).get("primaryTitle").toString()
+                                var original = jsonarray.getJSONObject(position).get("originalTitle").toString()
+                                var startYear = jsonarray.getJSONObject(position).get("startYear").toString()
+
+                                val body = FormBody.Builder()
+                                    .add("id", Luid.toString())
+                                    .add("tconst", tconst)
+                                    .add("primary", primary)
+                                    .add("original", original)
+                                    .add("startYear", startYear)
+                                    .build()
+
+                                val body2 = FormBody.Builder()
+                                    .add("id", Luid.toString())
+                                    .add("tconst", tconst)
+                                    .build()
+
+                                if(Luid == 0){
+                                    Toast.makeText(this@TypeListView, "Please Login First", Toast.LENGTH_SHORT).show()
+                                } else{
+                                    if(!Lovelist.contains(tconst)){
+                                        insertlove(body)
+                                        Lovelist.add(tconst)
+                                        LovelistData.add(Class_GlobleVarable.Companion.LoveData(primary,original,startYear,url))
+                                        Log.d("primary", primary)
+                                        Log.d("original", original)
+                                        Log.d("startYear", startYear)
+                                        Log.d("url", url)
+                                        Log.d("LIST", LovelistData[i].primary)
+                                        i = i + 1
+                                        Toast.makeText(this@TypeListView, "Insert in to Favorite", Toast.LENGTH_SHORT).show()
+                                    } else{
+                                        deletelove(body2)
+                                        Lovelist.remove(tconst)
+                                        LovelistData.remove(Class_GlobleVarable.Companion.LoveData(primary,original,startYear,url))
+                                        Toast.makeText(this@TypeListView, "You have deleted the Favorite", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                                true
+                            }
+
+                        }catch (e: JSONException){
+                            Log.d("Jsonerror ",e.message)
+                        }
                     }
+
+
                 }
 
             }

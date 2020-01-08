@@ -65,7 +65,7 @@ class innerShort:Fragment(){
                     .add("genres", "%")
                     .build()
                 val request = Request.Builder()
-                    .url("http://140.136.149.225:80/search_short.php")
+                    .url("http://140.136.149.225:80/search_movie.php")
                     .post(body)
                     .build()
                 client.newCall(request).enqueue(object : Callback {
@@ -77,7 +77,7 @@ class innerShort:Fragment(){
                         activity!!.runOnUiThread(){
                             Log.d("onResponse", "in here")
 
-                            var responseData = response.body()!!.string()
+                            var responseData = response.body()?.string()
 //                            var jsonarray = JSONArray(responseData)
 //                            Log.i("seeRespond",response.body()!!.string())
 

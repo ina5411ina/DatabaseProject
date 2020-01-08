@@ -40,8 +40,8 @@ class FragmentLike() : Fragment() {
 
         val layout = inflate.findViewById<View>(R.id.fragment_like)
         val testLogin = inflate.findViewById<Button>(R.id.testLogin)
-        val ttdata = inflate.findViewById<TextView>(R.id.ttdata)
-        val testCrawler = inflate.findViewById<Button>(R.id.testCrawler)
+//        val ttdata = inflate.findViewById<TextView>(R.id.ttdata)
+//        val testCrawler = inflate.findViewById<Button>(R.id.testCrawler)
 
 
 
@@ -56,10 +56,10 @@ class FragmentLike() : Fragment() {
 //            startActivity(intent)
 //        }
 
-        testCrawler.setOnClickListener(){
-            var url = "https://www.imdb.com/title/tt4520988/?ref_=nv_sr_srsg_0"
-            Crawler(url)
-        }
+//        testCrawler.setOnClickListener(){
+//            var url = "https://www.imdb.com/title/tt4520988/?ref_=nv_sr_srsg_0"
+//            Crawler(url)
+//        }
         return inflate
     }
 

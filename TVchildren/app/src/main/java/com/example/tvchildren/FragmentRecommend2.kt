@@ -12,11 +12,13 @@ import android.webkit.WebViewClient
 import android.widget.MediaController
 import android.widget.VideoView
 import androidx.fragment.app.Fragment
+import com.example.tvchildren.Class_GlobleVarable.Companion.RecommendUrl
+import kotlinx.android.synthetic.main.activity_set_web_view.*
 import kotlinx.android.synthetic.main.fragment_recommend.*
 
 
-class FragmentRecommend : Fragment() {
-     val T = "FragmentRecommend"
+class FragmentRecommend2 : Fragment() {
+    val T = "FragmentRecommend"
 
     override fun onAttach(context: Context) {
         Log.d(T, "onAttach")
@@ -30,18 +32,23 @@ class FragmentRecommend : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(T, "onCreateView")
-        var inflate = inflater!!.inflate(R.layout.fragment_recommend, container, false)
-        var layout = inflate.findViewById<View>(R.id.fragment_recommend)
+        var inflate = inflater!!.inflate(R.layout.fragment_recommend2, container, false)
+        var layout = inflate.findViewById<View>(R.id.fragment_recommend2)
 //        var video = inflate.findViewById<VideoView>(R.id.video)
 //        var video2 = inflate.findViewById<WebView>(R.id.video2)
+        var recommend_web = layout.findViewById<WebView>(R.id.recommend_web)
 
-        var mediaController: MediaController? = null
+        Log.d("URL", RecommendUrl)
 
-//        video.setVideoPath("https://imdb-video.media-imdb.com/vi2143993625/1434659607842-pgv4ql-1574275019638.mp4?Expires=1578482633&Signature=oSrMI3MhoXnJbp7K5RW8UATEqMwRE~vBLwQfVlAY7K5ke6xxXKqepBUjDKXNnhON5AyQfMTVmHpriDEYQL6AWsq8olOqMI-VS2Tw1YwS4CS0OlReAP9Yxtm85rmrWuePGL15e47arxI0kF~q7-1J1bhOF3DjJPId18KMLWYoBZXgehhVjg~~mDm4aDBxB5X1okAVtad~ghUHcK7Q6nTOH4VjtG8QGYN15k1cWNKDeSmnMs9PWtj~v3I4jAhiro6SW4ySXP~xAozLHhaNm0DOmT5cIvLwYOmLzZ-2qsRMBh3DEG9fTiN9vl~fVGN4NLymhKrasIx~nwVIZtaqfnZQew__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA")
-//        mediaController = MediaController(layout.context)
-//        mediaController?.setAnchorView(video)
-//        video.setMediaController(mediaController)
-//        video.start()
+        recommend_web.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                view?.loadUrl(url)
+                return true
+            }
+        }
+        recommend_web.loadUrl(RecommendUrl)
+
+
 
         return inflate
     }
